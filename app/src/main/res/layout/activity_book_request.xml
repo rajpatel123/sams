@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.BookRequestActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Category"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/choseCategory"
+                android:background="@drawable/edibox_border"
+                android:drawableRight="@drawable/arrow_down_black_24dp"
+                android:hint="Choose Category"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:text="Service"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <EditText
+                android:id="@+id/choseService"
+                android:background="@drawable/edibox_border"
+                android:hint="Choose Service"
+                android:drawableRight="@drawable/arrow_down_black_24dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:text="Date"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/choseDate"
+                android:background="@drawable/edibox_border"
+                android:hint="Choose Date"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+            <TextView
+                android:text="Time"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <EditText
+                android:id="@+id/choseTime"
+                android:background="@drawable/edibox_border"
+                android:hint="Choose Time"
+                android:drawableRight="@drawable/arrow_down_black_24dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+            <TextView
+                android:text="Your Name"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/enterName"
+                android:background="@drawable/edibox_border"
+                android:hint="Enter Your Name"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:text="Mobile No"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/enterMobile"
+                android:background="@drawable/edibox_border"
+                android:hint="Enter Your Mobile Number"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+            <TextView
+                android:text="Email ID"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/enterEmail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edibox_border"
+                android:hint="Enter Your Email ID"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:text="Alternate Mobile No"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <EditText
+                android:id="@+id/AlterMobileNum"
+                android:background="@drawable/edibox_border"
+                android:hint="Alternate Mobile No"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:text="Landmark"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <EditText
+                android:id="@+id/enterLandmark"
+                android:background="@drawable/edibox_border"
+                android:hint="Enter Your Landmark"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:text="Pincode"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <EditText
+                android:id="@+id/enterPincode"
+                android:background="@drawable/edibox_border"
+                android:hint="Enter Pincode"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:text="State"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <EditText
+                android:id="@+id/choseState"
+                android:background="@drawable/edibox_border"
+                android:hint="Choose Your State"
+                android:drawableRight="@drawable/arrow_down_black_24dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:text="City"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/choseCity"
+                android:background="@drawable/edibox_border"
+                android:hint="Choose City"
+                android:drawableRight="@drawable/arrow_down_black_24dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <Button
+                android:id="@+id/btnButton"
+                android:background="#2196F3"
+                android:textColor="#FAFAFA"
+                android:text="Book Now"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>
