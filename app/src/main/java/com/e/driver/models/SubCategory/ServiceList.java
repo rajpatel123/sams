@@ -1,4 +1,4 @@
-package com.e.driver.Model.SubCategory;
+package com.e.driver.models.SubCategory;
 
 
 
