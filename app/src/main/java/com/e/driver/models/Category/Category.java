@@ -1,4 +1,4 @@
-package com.e.driver.Model.Category;
+package com.e.driver.models.Category;
 
 
 import com.google.gson.annotations.Expose;

@@ -1,7 +1,7 @@
-package com.e.driver.Retrofit;
+package com.e.driver.retrofit;
 
-import com.e.driver.Model.Category.ServiceResponse;
-import com.e.driver.Model.SubCategory.SubCategoryResponse;
+import com.e.driver.models.Category.ServiceResponse;
+import com.e.driver.models.SubCategory.SubCategoryResponse;
 
 import retrofit2.Callback;
 

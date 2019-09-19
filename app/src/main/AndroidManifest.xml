@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.SubCategoryActivity"></activity>
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".activities.SubCategoryActivity"></activity>
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

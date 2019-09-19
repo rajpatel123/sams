@@ -1,4 +1,4 @@
-package com.e.driver.Adapter;
+package com.e.driver.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.e.driver.Model.SubCategory.ServiceList;
+import com.e.driver.models.SubCategory.ServiceList;
 import com.e.driver.R;
 
 import java.util.List;
@@ -25,13 +25,13 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-         View view= LayoutInflater.from(context).inflate(R.layout.item_sub_category,viewGroup,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_sub_category, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        ServiceList serviceList=subCategoryList.get(i);
+        ServiceList serviceList = subCategoryList.get(i);
 
         holder.serviceName.setText(serviceList.getServiceName());
         holder.servicePrice.setText(serviceList.getPrice());
@@ -40,17 +40,28 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
 
     @Override
     public int getItemCount() {
-        return subCategoryList.size();
+        if (subCategoryList != null && subCategoryList.size() > 0)
+            return subCategoryList.size();
+        else
+            return 0;
+    }
+
+    public void setCategryData(List<ServiceList> serviceList) {
+        this.subCategoryList = serviceList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView serviceName,servicePrice;
+        private TextView serviceName, servicePrice;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            serviceName=itemView.findViewById(R.id.tv_sub_category_name);
-            servicePrice=itemView.findViewById(R.id.tv_sub_category_price);
+            serviceName = itemView.findViewById(R.id.tv_sub_category_name);
+            servicePrice = itemView.findViewById(R.id.tv_sub_category_price);
 
         }
+    }
+
+    public interface OnSubCategoryClick {
+        public void onSubCategoryClick(int position);
     }
 }
