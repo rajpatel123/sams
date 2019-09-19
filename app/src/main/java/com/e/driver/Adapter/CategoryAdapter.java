@@ -1,7 +1,9 @@
 package com.e.driver.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.e.driver.Model.Category;
-import com.e.driver.Model.ServiceResponse;
+import com.e.driver.Activity.MainActivity;
+import com.e.driver.Activity.SubCategoryActivity;
+import com.e.driver.Model.Category.Category;
 import com.e.driver.R;
 
 import java.util.List;
@@ -34,7 +37,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         Category category= categoryList.get(i);
         holder.categoryName.setText(""+category.getCategoryName());
+        holder.cardViewCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent=new Intent(context,SubCategoryActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -46,11 +56,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         private ImageView categoryImage;
         private TextView categoryName;
+        private CardView cardViewCategory;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryImage=itemView.findViewById(R.id.iv_categoryService);
             categoryName=itemView.findViewById(R.id.tv_category_name);
+            cardViewCategory=itemView.findViewById(R.id.cv_category);
         }
     }
 }
