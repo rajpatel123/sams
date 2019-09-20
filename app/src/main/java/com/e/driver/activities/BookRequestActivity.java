@@ -1,4 +1,4 @@
-package com.e.driver.Activity;
+package com.e.driver.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

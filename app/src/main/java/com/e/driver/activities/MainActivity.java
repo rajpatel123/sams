@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
         categoryAdapter = new CategoryAdapter(MainActivity.this, serviceResponse.getCategories());
         categoryAdapter.setOnCategoryClickListener(this);
         rv_service.setAdapter(categoryAdapter);
+
         if (Utils.isInternetConnected(this)) {
             Utils.showProgressDialog(this);
             getAllcategories();
