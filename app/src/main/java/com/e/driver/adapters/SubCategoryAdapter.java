@@ -34,7 +34,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
         ServiceList serviceList = subCategoryList.get(i);
 
         holder.serviceName.setText(serviceList.getServiceName());
-        holder.servicePrice.setText(serviceList.getPrice());
+        holder.servicePrice.setText("INR "+serviceList.getPrice());
 
     }
 
