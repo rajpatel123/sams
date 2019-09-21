@@ -32,8 +32,11 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         rv_service = findViewById(R.id.rv_service);
         serviceResponse = new ServiceResponse();
+
+        //setAdapter
         rv_service.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
         categoryAdapter = new CategoryAdapter(MainActivity.this, serviceResponse.getCategories());
         categoryAdapter.setOnCategoryClickListener(this);

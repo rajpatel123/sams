@@ -42,6 +42,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Category category = categoryList.get(i);
         holder.categoryName.setText("" + category.getCategoryName());
         holder.cardViewCategory.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 if (clickCategoryClick != null) {
@@ -55,6 +56,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public int getItemCount() {
         if (categoryList != null && categoryList.size() > 0) {
             return categoryList.size();
+
         } else {
             return 0;
         }
