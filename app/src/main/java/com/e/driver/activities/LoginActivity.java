@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<LoginMobileNumberResponse> call, Throwable t) {
+                        Utils.dismissProgressDialog();
+
                         Toast.makeText(LoginActivity.this, "Failure", Toast.LENGTH_SHORT).show();
 
                     }

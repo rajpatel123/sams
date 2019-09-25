@@ -13,6 +13,7 @@ import com.e.driver.R;
 import com.e.driver.models.submit_otp.Customer;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 import com.e.driver.retrofit.RestClient;
+import com.e.driver.utils.Constants;
 import com.e.driver.utils.FuroPrefs;
 import com.e.driver.utils.Utils;
 
@@ -70,11 +71,12 @@ public class SubmitOtpActivity extends AppCompatActivity {
 
 
                             if (loginMobileOtpResponse.getData().getCustomer().getRoleID().equalsIgnoreCase("0") || loginMobileOtpResponse.getData().getCustomer().getRoleID().equalsIgnoreCase("3")) {
-                                Intent intent = new Intent(SubmitOtpActivity.this, BookRequestActivity.class);
+                                Intent intent = new Intent(SubmitOtpActivity.this, MainActivity.class);
                                 startActivity(intent);
 
                             } else if (loginMobileOtpResponse.getData().getCustomer().getRoleID().equalsIgnoreCase("1")) {
                                 Intent intent = new Intent(SubmitOtpActivity.this, MainActivity.class);
+                                FuroPrefs.putBoolean(SubmitOtpActivity.this,Constants.LOGGED_IN,true);
                                 startActivity(intent);
                             }
 
