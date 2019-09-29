@@ -10,14 +10,15 @@ import android.view.ViewGroup;
 
 import com.e.driver.R;
 
-public class TabLayoutFragmentTwo extends Fragment {
+public class AssignedFragment extends Fragment {
+
+
     private Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_tablayout_two, container, false);
+        View root = inflater.inflate(R.layout.fragment_tablayout_assigned, container, false);
         context = getActivity();
         return  root;
     }
 }
-

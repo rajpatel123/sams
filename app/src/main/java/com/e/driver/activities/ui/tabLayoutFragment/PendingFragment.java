@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 
 import com.e.driver.R;
 
-public class TabLayoutFragmentThree extends Fragment {
-
+public class PendingFragment extends Fragment {
     private Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_tablayout_three, container, false);
+        View root = inflater.inflate(R.layout.fragment_tablayout_two, container, false);
         context = getActivity();
         return  root;
     }

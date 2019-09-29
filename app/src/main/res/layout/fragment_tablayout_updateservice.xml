@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="30dp"
+        android:id="@+id/imageviewup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/windowacrepairup"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Window Ac Repair"
+        android:textColor="#000"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/textviewup"
+        android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+
+        android:text="Air conditioner Air conditioner ir conditioner Air conditioner ir conditioner Air conditioner ir conditioner Air conditioner"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/priceup"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Price Rs .540 "
+        android:textColor="#000"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:layout_marginLeft="10dp"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text=" Status "
+            android:textColor="#000"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:id="@+id/statusup"
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:layout_marginLeft="20dp"
+            android:hint=" Status"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/logout_button_border"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/messageup"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:hint="Message"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/logout_button_border"
+            android:layout_height="150dp"/>
+
+
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_gravity="bottom"
+            android:background="@color/colorLightBlue"
+
+
+
+            android:text=" Update "
+            android:id="@+id/buttonupdate"
+            android:textColor="#fff"
+            android:layout_height="50dp"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
