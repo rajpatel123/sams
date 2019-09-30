@@ -6,6 +6,7 @@ import com.e.driver.models.LoginEmail.LoginEmailResponse;
 import com.e.driver.models.LoginMobile.LoginMobileNumberResponse;
 import com.e.driver.models.SubCategory.SubCategoryResponse;
 import com.e.driver.models.TimeSlote.TimeSloteResponse;
+import com.e.driver.models.assigendServices.AssignedServicesResponse;
 import com.e.driver.models.bookings.Bookings;
 import com.e.driver.models.cities.CityListResponce;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
@@ -74,6 +75,11 @@ public class RestClient {
                 cust_alter_mob, ctype_id, cust_address, cust_landmark, cust_pincode, city_id, state_id,
                 price, prime_member_discount, booking_date, time_slot_id, created_by, modified_by, service_category_id,
                 service_list_id).enqueue(callback);
+
+    }
+
+    public static void getAssigned(String id, Callback<AssignedServicesResponse> callback){
+        RetrofitClient.getClient().getAssignedResponse(id).enqueue(callback);
 
     }
 }

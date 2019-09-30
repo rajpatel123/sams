@@ -30,6 +30,7 @@ public class DashBoardNewactivity extends AppCompatActivity
     private TextView mobile;
     private TextView email;
     private Toolbar toolbar;
+    String roleID;
 
 
     @Override
@@ -40,6 +41,8 @@ public class DashBoardNewactivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         toolbar.setTitle("Home");
 
+        roleID=SamsPrefs.getString(getApplicationContext(),Constants.ROLE);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,10 +51,10 @@ public class DashBoardNewactivity extends AppCompatActivity
         toggle.syncState();
 
 
+
         View header = navigationView.getHeaderView(0);
         mobile = header.findViewById(R.id.navTextViewMobile);
         email = header.findViewById(R.id.nav_textViewEmail);
-
         mobile.setText(SamsPrefs.getString(getApplicationContext(), Constants.MOBILE_NUMBER));
         email.setText(SamsPrefs.getString(getApplicationContext(), Constants.EMAIL));
 
@@ -59,6 +62,8 @@ public class DashBoardNewactivity extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -91,6 +96,8 @@ public class DashBoardNewactivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -113,7 +120,6 @@ public class DashBoardNewactivity extends AppCompatActivity
             Intent intent = new Intent(DashBoardNewactivity.this, JoiPrimeMembershipActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.enter, R.anim.exit);
-
 
         } else if (id == R.id.nav_rateus) {
 
