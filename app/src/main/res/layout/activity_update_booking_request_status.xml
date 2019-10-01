@@ -8,14 +8,14 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="30dp"
         android:id="@+id/imageviewup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="10dp"
         android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/logo" />
 
     <TextView
-        android:id="@+id/windowacrepairup"
+        android:id="@+id/title"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:textStyle="bold"
@@ -32,6 +32,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:gravity="center"
+        android:visibility="gone"
         android:layout_marginTop="20dp"
 
         android:text="Air conditioner Air conditioner ir conditioner Air conditioner ir conditioner Air conditioner ir conditioner Air conditioner"
@@ -45,6 +46,7 @@
         android:textStyle="bold"
         android:textSize="22dp"
         android:gravity="center"
+        android:visibility="gone"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:text="Price Rs .540 "
@@ -71,12 +73,14 @@
             android:layout_height="wrap_content"/>
 
 
-        <EditText
+        <Spinner
             android:id="@+id/statusup"
             android:layout_width="match_parent"
             android:padding="8dp"
             android:layout_marginLeft="20dp"
+            android:minHeight="40dp"
             android:hint=" Status"
+            android:entries="@array/status"
             android:layout_marginRight="20dp"
             android:background="@drawable/logout_button_border"
             android:layout_height="wrap_content"/>
@@ -86,7 +90,8 @@
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:padding="8dp"
-            android:hint="Message"
+            android:hint="Remarks(Optional)"
+            android:gravity="start"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/logout_button_border"
@@ -103,9 +108,6 @@
             android:padding="10dp"
             android:layout_gravity="bottom"
             android:background="@color/colorLightBlue"
-
-
-
             android:text=" Update "
             android:id="@+id/buttonupdate"
             android:textColor="#fff"

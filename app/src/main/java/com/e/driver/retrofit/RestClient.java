@@ -87,6 +87,17 @@ public class RestClient {
 
     }
 
+    public static void pendingBooking(String id,String order ,String reason, Callback<ResponseBody> callback){
+        RetrofitClient.getClient().PendingRequest(id,order,reason).enqueue(callback);
+
+    }public static void completeBooking(String id,String order , Callback<ResponseBody> callback){
+        RetrofitClient.getClient().CompleteRequest(id,order).enqueue(callback);
+
+    }public static void processBookin(String id,String order, Callback<ResponseBody> callback){
+        RetrofitClient.getClient().ProcessRequest(id,order).enqueue(callback);
+
+    }
+
     public  static void getOngoing(String id, Callback<OngoingResponse>callback){
         RetrofitClient.getClient().getOngoingResponse(id).enqueue(callback);
     }

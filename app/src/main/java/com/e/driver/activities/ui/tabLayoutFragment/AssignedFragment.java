@@ -88,7 +88,7 @@ public class AssignedFragment extends Fragment implements OnBookingClickListener
     public void onBookingClick(int position) {
         Intent intent = new Intent(getActivity(), UpdateBookingRequestStatusActivity.class);
         intent.putExtra("serviceName", assignedServicesResponse.getData().getNewServiceList().get(position).getServiceName());
-        intent.putExtra("serviceName", assignedServicesResponse.getData().getNewServiceList().get(position).getOrderNo());
+        intent.putExtra("orderId", assignedServicesResponse.getData().getNewServiceList().get(position).getOrderNo());
         getActivity().startActivity(intent);
     }
 }

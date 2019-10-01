@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-       // getSupportActionBar().hide();
+        // getSupportActionBar().hide();
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<LoginEmailResponse> call, Throwable t) {
-
+                        Utils.dismissProgressDialog();
                     }
                 });
 

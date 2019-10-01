@@ -78,16 +78,29 @@ public interface ApiInterface {
                                       @Query("service_list_id") String service_list_id);
 
     @GET("api/Employee/NewRequestList")
-    Call<AssignedServicesResponse>getAssignedResponse(@Query("id")String id);
+    Call<AssignedServicesResponse> getAssignedResponse(@Query("id") String id);
 
     @GET("/api/Employee/ProcessRequestList")
-    Call<OngoingResponse>getOngoingResponse(@Query("id")String id);
+    Call<OngoingResponse> getOngoingResponse(@Query("id") String id);
 
     @GET("api/Employee/CompleteRequestList")
-    Call<CompletedResponse>getCompletedResponse(@Query("id")String id);
+    Call<CompletedResponse> getCompletedResponse(@Query("id") String id);
 
     @GET("api/Employee/PendingRequestList")
-    Call<PendingResponse>getPendingResponse(@Query("id") String id);
+    Call<PendingResponse> getPendingResponse(@Query("id") String id);
+
+    @GET("api/Employee/PendingRequest")
+    Call<ResponseBody> PendingRequest(@Query("id") String id,
+                                         @Query("orderno") String order,
+                                         @Query("reason") String message);
+
+    @GET("api/Employee/CompleteRequest")
+    Call<ResponseBody> CompleteRequest(@Query("id") String id,
+                                          @Query("orderno") String order);
+
+    @GET("api/Employee/ProcessRequest")
+    Call<ResponseBody> ProcessRequest(@Query("id") String id,
+                                             @Query("orderno") String order);
 
 
 }
