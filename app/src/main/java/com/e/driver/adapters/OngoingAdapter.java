@@ -9,13 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.e.driver.R;
+import com.e.driver.activities.ui.tabLayoutFragment.OngoingFragment;
+import com.e.driver.interfaces.OnBookingClickListener;
 import com.e.driver.models.onGoingService.OngoingServiceList;
 
 import java.util.List;
 
 public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.ViewHolder> {
 
-
+    OnBookingClickListener onBookingListener;
     private Context context;
     private List<OngoingServiceList> ongoingList;
     public OngoingAdapter(Context context, List<OngoingServiceList> ongoingList) {
@@ -46,6 +48,10 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.ViewHold
     @Override
     public int getItemCount() {
         return ongoingList.size();
+    }
+
+    public void setOnBookingListener(OnBookingClickListener onBookingListener) {
+        this.onBookingListener = onBookingListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
