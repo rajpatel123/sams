@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.e.driver.R;
@@ -30,16 +31,19 @@ public class DashBoardNewactivity extends AppCompatActivity
     private TextView mobile;
     private TextView email;
     private Toolbar toolbar;
-
+    String role;
+    private MenuItem navHome,navPrime,navBooking,navNewBooking;
+    private Button logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         toolbar = findViewById(R.id.toolbar);
+        logout = findViewById(R.id.logout);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Home");
-
+        role = SamsPrefs.getString(this, Constants.ROLE);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -49,15 +53,47 @@ public class DashBoardNewactivity extends AppCompatActivity
 
 
         View header = navigationView.getHeaderView(0);
+        Menu menues = navigationView.getMenu();
+
+        navHome = menues.findItem(R.id.nav_home);
+        navBooking = menues.findItem(R.id.nav_mybooking);
+        navNewBooking = menues.findItem(R.id.nav_newbooking);
+        navPrime = menues.findItem(R.id.nav_prime_member);
+
+
+        if (role.equalsIgnoreCase("2")){
+            navHome.setVisible(false);
+            navPrime.setVisible(false);
+            navNewBooking.setVisible(false);
+            navBooking.setVisible(true);
+            replaceFragment(new TablayoutFragment());
+
+        }else{
+            navHome.setVisible(true);
+            navPrime.setVisible(true);
+            navNewBooking.setVisible(true);
+            navBooking.setVisible(true);
+            replaceFragment(new HomeFragment());
+
+        }
         mobile = header.findViewById(R.id.navTextViewMobile);
         email = header.findViewById(R.id.nav_textViewEmail);
 
         mobile.setText(SamsPrefs.getString(getApplicationContext(), Constants.MOBILE_NUMBER));
         email.setText(SamsPrefs.getString(getApplicationContext(), Constants.EMAIL));
 
-        replaceFragment(new HomeFragment());
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SamsPrefs.clear(getApplicationContext());
+                Intent intent = new Intent(DashBoardNewactivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -74,6 +110,8 @@ public class DashBoardNewactivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.dash_board_newactivity, menu);
+
+
         return true;
     }
 
@@ -83,7 +121,7 @@ public class DashBoardNewactivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-       // onBackPressed();
+        // onBackPressed();
 
         return super.onOptionsItemSelected(item);
     }
@@ -100,7 +138,12 @@ public class DashBoardNewactivity extends AppCompatActivity
             replaceFragment(new HomeFragment());
             // Handle the camera action
         } else if (id == R.id.nav_mybooking) {
-            replaceFragment(new MyBookingFragments());
+            if (SamsPrefs.getString(this, Constants.ROLE).equalsIgnoreCase("2")) {
+                replaceFragment(new TablayoutFragment());
+            } else {
+                replaceFragment(new MyBookingFragments());
+
+            }
             toolbar.setTitle("My Bookings");
 
         } else if (id == R.id.nav_newbooking) {
@@ -116,10 +159,7 @@ public class DashBoardNewactivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_rateus) {
-
-            replaceFragment(new TablayoutFragment());
             toolbar.setTitle("About Us");
-
         } else if (id == R.id.nav_share) {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
@@ -132,8 +172,7 @@ public class DashBoardNewactivity extends AppCompatActivity
             toolbar.setTitle("About Us");
 
 
-
-        }else if (id == R.id.nav_help) {
+        } else if (id == R.id.nav_help) {
             replaceFragment(new HelpFragment());
             toolbar.setTitle("Help");
 

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Data {
 
-    @SerializedName("Customer")
+    @SerializedName("User")
     @Expose
     private Customer customer;
 

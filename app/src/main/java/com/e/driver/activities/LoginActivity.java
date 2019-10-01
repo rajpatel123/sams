@@ -137,12 +137,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             Customer customer = response.body().getData().getCustomer();
-                            if (customer.getRoleID().equalsIgnoreCase("3") || (customer.getRoleID().equalsIgnoreCase("1"))) {
-                                intent = new Intent(LoginActivity.this, DashBoardNewactivity.class);
+                            intent = new Intent(LoginActivity.this, DashBoardNewactivity.class);
 
-                            } else if (customer.getRoleID().equalsIgnoreCase("2")) {
-                                intent = new Intent(LoginActivity.this, BookRequestActivity.class);
-                            }
                             SamsPrefs.putBoolean(LoginActivity.this, Constants.LOGGEDIN, true);
 
                             SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, customer.getLoginID());
@@ -152,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                             SamsPrefs.putString(getApplicationContext(), Constants.EMAIL, emailId.getText().toString());
                             SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, customer.getCustomerTypeID());
                             startActivity(intent);
+                            finish();
                             overridePendingTransition(R.anim.enter, R.anim.exit);
 
 
