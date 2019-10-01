@@ -10,6 +10,9 @@ import com.e.driver.models.TimeSlote.TimeSloteResponse;
 import com.e.driver.models.assigendServices.AssignedServicesResponse;
 import com.e.driver.models.bookings.Bookings;
 import com.e.driver.models.cities.CityListResponce;
+import com.e.driver.models.completedService.CompletedResponse;
+import com.e.driver.models.onGoingService.OngoingResponse;
+import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 
 import okhttp3.ResponseBody;
@@ -76,6 +79,15 @@ public interface ApiInterface {
 
     @GET("api/Employee/NewRequestList")
     Call<AssignedServicesResponse>getAssignedResponse(@Query("id")String id);
+
+    @GET("/api/Employee/ProcessRequestList")
+    Call<OngoingResponse>getOngoingResponse(@Query("id")String id);
+
+    @GET("api/Employee/CompleteRequestList")
+    Call<CompletedResponse>getCompletedResponse(@Query("id")String id);
+
+    @GET("api/Employee/PendingRequestList")
+    Call<PendingResponse>getPendingResponse(@Query("id") String id);
 
 
 }

@@ -9,9 +9,13 @@ import com.e.driver.models.TimeSlote.TimeSloteResponse;
 import com.e.driver.models.assigendServices.AssignedServicesResponse;
 import com.e.driver.models.bookings.Bookings;
 import com.e.driver.models.cities.CityListResponce;
+import com.e.driver.models.completedService.CompletedResponse;
+import com.e.driver.models.onGoingService.OngoingResponse;
+import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.Callback;
 
 public class RestClient {
@@ -81,5 +85,18 @@ public class RestClient {
     public static void getAssigned(String id, Callback<AssignedServicesResponse> callback){
         RetrofitClient.getClient().getAssignedResponse(id).enqueue(callback);
 
+    }
+
+    public  static void getOngoing(String id, Callback<OngoingResponse>callback){
+        RetrofitClient.getClient().getOngoingResponse(id).enqueue(callback);
+    }
+
+    public static void getCompleted(String id, Callback<CompletedResponse> callback){
+        RetrofitClient.getClient().getCompletedResponse(id).enqueue(callback);
+    }
+
+    public static void getPending(String id, Callback<PendingResponse>callback){
+
+        RetrofitClient.getClient().getPendingResponse(id).enqueue(callback);
     }
 }

@@ -36,11 +36,8 @@ public class AssignedFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_tablayout_assigned, container, false);
         context = getActivity();
 
-        emp_id=SamsPrefs.getString(context,"cType");
-
+        emp_id=SamsPrefs.getString(context,Constants.CUST_ID);
         assignRecyclerView=root.findViewById(R.id.assignRecyclerView);
-
-
         getAssignedService();
 
         return  root;
@@ -58,7 +55,8 @@ public class AssignedFragment extends Fragment {
                     Utils.dismissProgressDialog();
 
                     assignedServicesResponse=response.body();
-                    if (assignedServicesResponse.getStatusType().equalsIgnoreCase("Success")&& assignedServicesResponse.getData().getNewServiceList()!=null){
+                    if (assignedServicesResponse.getStatusType().equalsIgnoreCase("Success")&&
+                            assignedServicesResponse.getData().getNewServiceList()!=null){
 
                         assignRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                         assignedAdapter=new AssignedAdapter(getActivity(),assignedServicesResponse.getData().getNewServiceList());
@@ -71,7 +69,7 @@ public class AssignedFragment extends Fragment {
 
 
 
-                Log.d("Response",response.body().toString());
+             //   Log.d("Response",response.body().toString());
 
             }
 

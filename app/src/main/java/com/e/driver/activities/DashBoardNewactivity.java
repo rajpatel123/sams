@@ -138,7 +138,7 @@ public class DashBoardNewactivity extends AppCompatActivity
             replaceFragment(new HomeFragment());
             // Handle the camera action
         } else if (id == R.id.nav_mybooking) {
-            if (SamsPrefs.getString(this, Constants.ROLE).equalsIgnoreCase("2")) {
+            if (role.equalsIgnoreCase("2")) {
                 replaceFragment(new TablayoutFragment());
             } else {
                 replaceFragment(new MyBookingFragments());
