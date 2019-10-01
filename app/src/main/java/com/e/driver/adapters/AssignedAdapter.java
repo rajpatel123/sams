@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.e.driver.R;
+import com.e.driver.activities.ui.tabLayoutFragment.AssignedFragment;
+import com.e.driver.interfaces.OnBookingClickListener;
 import com.e.driver.models.assigendServices.AssignedServicesResponse;
 import com.e.driver.models.assigendServices.NewServiceList;
 
@@ -18,7 +20,7 @@ public class AssignedAdapter extends RecyclerView.Adapter<AssignedAdapter.ViewHo
 
     private Context context;
     private List<NewServiceList> assignedList;
-
+    OnBookingClickListener onBookingClick;
 
     public AssignedAdapter(Context context, List<NewServiceList> assignedList) {
         this.context = context;
@@ -36,10 +38,18 @@ public class AssignedAdapter extends RecyclerView.Adapter<AssignedAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         NewServiceList newServiceList=assignedList.get(i);
         holder.assignServiceName.setText(""+newServiceList.getServiceName());
         holder.assignName.setText(""+newServiceList.getCustName());
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onBookingClick!=null){
+                    onBookingClick.onBookingClick(holder.getAdapterPosition());
+                }
+            }
+        });
 
     }
 
@@ -48,12 +58,17 @@ public class AssignedAdapter extends RecyclerView.Adapter<AssignedAdapter.ViewHo
         return assignedList.size();
     }
 
+    public void setOnBookingClick(OnBookingClickListener onBookingClick) {
+        this.onBookingClick=onBookingClick;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView assignServiceName, assignName;
-
+        View view;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            view=itemView;
             assignServiceName=itemView.findViewById(R.id.tv_assignedServiceName);
             assignName=itemView.findViewById(R.id.Cust_Name);
         }

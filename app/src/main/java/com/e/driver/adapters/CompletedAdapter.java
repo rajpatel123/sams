@@ -9,14 +9,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.e.driver.R;
+import com.e.driver.activities.ui.tabLayoutFragment.CompletedFragment;
+import com.e.driver.interfaces.OnBookingClickListener;
 import com.e.driver.models.completedService.CompleteServiceList;
 
 import java.util.List;
 
 public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.ViewHolder> {
-
+    OnBookingClickListener onBookingClick;
     private Context context;
     private List<CompleteServiceList> completedList;
+
     public CompletedAdapter(Context context, List<CompleteServiceList> completedList) {
         this.context = context;
         this.completedList = completedList;
@@ -26,17 +29,24 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.View
     @Override
 
     public CompletedAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view=LayoutInflater.from(context).inflate(R.layout.item_completed,viewGroup,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_completed, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CompletedAdapter.ViewHolder holder, int i) {
-        CompleteServiceList completeServiceList=completedList.get(i);
-        holder.completedServiceName.setText(""+completeServiceList.getServiceName());
-        holder.Complete_Cust_name.setText(""+completeServiceList.getCustName());
-        holder.Complete_Add_Name.setText(""+completeServiceList.getCustAddress());
-
+    public void onBindViewHolder(@NonNull final CompletedAdapter.ViewHolder holder, int i) {
+        CompleteServiceList completeServiceList = completedList.get(i);
+        holder.completedServiceName.setText("" + completeServiceList.getServiceName());
+        holder.Complete_Cust_name.setText("" + completeServiceList.getCustName());
+        holder.Complete_Add_Name.setText("" + completeServiceList.getCustAddress());
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onBookingClick != null) {
+                    onBookingClick.onBookingClick(holder.getAdapterPosition());
+                }
+            }
+        });
     }
 
     @Override
@@ -44,14 +54,19 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.View
         return completedList.size();
     }
 
+    public void setOnBookingClick(OnBookingClickListener onBookingClick) {
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView completedServiceName,Complete_Cust_name,Complete_Add_Name;
+        private TextView completedServiceName, Complete_Cust_name, Complete_Add_Name;
+        View view;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            completedServiceName=itemView.findViewById(R.id.tv_completedServiceName);
-            Complete_Cust_name=itemView.findViewById(R.id.completed_Cust_Name);
-            Complete_Add_Name=itemView.findViewById(R.id.completed_Cus_Add);
+            view = itemView;
+            completedServiceName = itemView.findViewById(R.id.tv_completedServiceName);
+            Complete_Cust_name = itemView.findViewById(R.id.completed_Cust_Name);
+            Complete_Add_Name = itemView.findViewById(R.id.completed_Cus_Add);
         }
     }
 }
