@@ -25,7 +25,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     OnClickCategoryClick clickCategoryClick;
 
 
-
     public CategoryAdapter(Context context) {
         this.context = context;
     }

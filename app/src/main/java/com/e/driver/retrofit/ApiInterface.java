@@ -7,6 +7,7 @@ import com.e.driver.models.LoginEmail.LoginEmailResponse;
 import com.e.driver.models.LoginMobile.LoginMobileNumberResponse;
 import com.e.driver.models.SubCategory.SubCategoryResponse;
 import com.e.driver.models.TimeSlote.TimeSloteResponse;
+import com.e.driver.models.assigendServices.AssignedServicesResponse;
 import com.e.driver.models.bookings.Bookings;
 import com.e.driver.models.cities.CityListResponce;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
@@ -72,5 +73,9 @@ public interface ApiInterface {
                                       @Query("modified_by") String modified_by,
                                       @Query("service_category_id") String service_category_id,
                                       @Query("service_list_id") String service_list_id);
+
+    @GET("api/Employee/NewRequestList")
+    Call<AssignedServicesResponse>getAssignedResponse(@Query("id")String id);
+
 
 }
