@@ -70,6 +70,9 @@ public class BookRequestActivity extends AppCompatActivity {
     Spinner choseCity;
     @BindView(R.id.btnSubmit)
     Button btnSubmit;
+    @BindView(R.id.address)
+            EditText enterAddress;
+
     Calendar calendar;
     String SubCatName;
     ServiceResponse serviceResponse;
@@ -150,7 +153,8 @@ public class BookRequestActivity extends AppCompatActivity {
         booking_date = choseDate.getText().toString();
         cust_email = enterEmail.getText().toString();
         cust_name = enterName.getText().toString();
-        cust_address = cust_landmark = enterLandmark.getText().toString();
+        cust_address = enterAddress.getText().toString();
+        cust_landmark = enterLandmark.getText().toString();
         cust_pincode = enterPincode.getText().toString();
         if (TextUtils.isEmpty(cust_id)) {
             Toast.makeText(this, "Please login first", Toast.LENGTH_LONG).show();

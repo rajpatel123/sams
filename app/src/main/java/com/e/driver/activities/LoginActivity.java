@@ -88,10 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                             SamsPrefs.putString(getApplicationContext(), Constants.EMAIL, emailId.getText().toString());
                             SamsPrefs.putString(getApplicationContext(), Constants.MOBILE_NUMBER, edtMobNumber.getText().toString());
                             startActivity(intent);
+                            finish();
                             overridePendingTransition(R.anim.enter, R.anim.exit);
 
                         } else {
-                            Toast.makeText(LoginActivity.this, "Enter valid otp", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Enter valid Mobile Number", Toast.LENGTH_SHORT).show();
                         }
 
                     }

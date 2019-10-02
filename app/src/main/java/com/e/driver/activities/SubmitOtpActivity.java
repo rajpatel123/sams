@@ -37,7 +37,7 @@ public class SubmitOtpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_otp);
         ButterKnife.bind(this);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
 
         submitOtpBtn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +75,7 @@ public class SubmitOtpActivity extends AppCompatActivity {
                     SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, loginMobileOtpResponse.getData().getCustomer().getCustomerTypeID());
                     SamsPrefs.putString(getApplicationContext(), Constants.NAME, loginMobileOtpResponse.getData().getCustomer().getUserName());
                     startActivity(intent);
+                    finish();
 
                 }
 
