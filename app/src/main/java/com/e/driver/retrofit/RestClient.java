@@ -15,7 +15,6 @@ import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 
 import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.Callback;
 
 public class RestClient {

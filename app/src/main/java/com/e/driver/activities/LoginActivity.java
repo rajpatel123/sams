@@ -140,9 +140,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Customer customer = response.body().getData().getCustomer();
                             intent = new Intent(LoginActivity.this, DashBoardNewactivity.class);
-
                             SamsPrefs.putBoolean(LoginActivity.this, Constants.LOGGEDIN, true);
-
                             SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, customer.getLoginID());
                             SamsPrefs.putString(getApplicationContext(), Constants.ROLE, customer.getRoleID());
                             SamsPrefs.putString(getApplicationContext(), Constants.MOBILE_NUMBER, customer.getMobileNo());

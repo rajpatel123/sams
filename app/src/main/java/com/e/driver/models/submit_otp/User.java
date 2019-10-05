@@ -4,11 +4,14 @@ package com.e.driver.models.submit_otp;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Customer {
+public class User {
 
     @SerializedName("User_Name")
     @Expose
     private String userName;
+    @SerializedName("User_Email")
+    @Expose
+    private String userEmail;
     @SerializedName("Role_ID")
     @Expose
     private String roleID;
@@ -36,6 +39,9 @@ public class Customer {
     @SerializedName("Pincode")
     @Expose
     private String pincode;
+    @SerializedName("Role_Name")
+    @Expose
+    private String roleName;
 
     public String getUserName() {
         return userName;
@@ -43,6 +49,14 @@ public class Customer {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getRoleID() {
@@ -115,6 +129,14 @@ public class Customer {
 
     public void setPincode(String pincode) {
         this.pincode = pincode;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
 }

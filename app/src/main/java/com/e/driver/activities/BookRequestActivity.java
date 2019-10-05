@@ -31,6 +31,10 @@ import com.e.driver.utils.Constants;
 import com.e.driver.utils.SamsPrefs;
 import com.e.driver.utils.Utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -84,7 +88,7 @@ public class BookRequestActivity extends AppCompatActivity {
     private String slotName, slot_id;
     private DatePickerDialog picker;
 
-    String cust_id;
+    String cust_id=null;
     String cust_name;
     String cust_email;
     String cust_login_mob;
@@ -156,10 +160,7 @@ public class BookRequestActivity extends AppCompatActivity {
         cust_address = enterAddress.getText().toString();
         cust_landmark = enterLandmark.getText().toString();
         cust_pincode = enterPincode.getText().toString();
-        if (TextUtils.isEmpty(cust_id)) {
-            Toast.makeText(this, "Please login first", Toast.LENGTH_LONG).show();
-            return false;
-        }
+
 
         if (TextUtils.isEmpty(cust_name)) {
             Toast.makeText(this, "Please enter name", Toast.LENGTH_LONG).show();
@@ -293,8 +294,6 @@ public class BookRequestActivity extends AppCompatActivity {
                     });
 
                 }
-
-
             }
 
             @Override
@@ -451,8 +450,27 @@ public class BookRequestActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         Utils.dismissProgressDialog();
+                        try {
+                            String rawdata = response.body().string();
+                            JSONObject jsonObject = new JSONObject(rawdata);
+                            if (jsonObject.has("Data")){
+                                JSONObject dataObj = jsonObject.getJSONObject("Data");
+
+                                if (dataObj.has("cust_id")){
+                                    SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, ""+dataObj.getInt("cust_id"));
+                                    SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, ""+dataObj.getInt("ctype_id"));
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Toast.makeText(BookRequestActivity.this, "Service booked successfully", Toast.LENGTH_LONG).show();
                         Log.d("Booking Response", response.body().toString());
+
+
+
                         finish();
                     }
 

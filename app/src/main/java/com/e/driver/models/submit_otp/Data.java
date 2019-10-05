@@ -8,14 +8,14 @@ public class Data {
 
     @SerializedName("User")
     @Expose
-    private Customer customer;
+    private User user;
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

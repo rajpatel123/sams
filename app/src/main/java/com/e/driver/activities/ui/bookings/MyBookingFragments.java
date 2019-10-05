@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.e.driver.R;
 import com.e.driver.adapters.BookingsAdapter;
@@ -30,7 +31,6 @@ public class MyBookingFragments extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-
         recyclerView = root.findViewById(R.id.customer_booking_recycler);
         bookings = new Bookings();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -40,8 +40,6 @@ public class MyBookingFragments extends Fragment {
         getCustomerBookings();
         return root;
     }
-
-
     private void getCustomerBookings() {
         RestClient.getCustomerBookings(SamsPrefs.getString(getActivity(), Constants.CUST_ID), new Callback<Bookings>() {
             @Override
@@ -49,7 +47,8 @@ public class MyBookingFragments extends Fragment {
                 Utils.dismissProgressDialog();
                 if (response.code() == 200) {
                     bookings = response.body();
-                    if (bookings.getStatusType().equalsIgnoreCase("Success") && bookings.getData().getBookingHistory() != null) {
+                    if (bookings.getStatusType().equalsIgnoreCase("Success") &&
+                            bookings.getData().getBookingHistory() != null) {
                         bookingsAdapter.setBookingData(bookings.getData().getBookingHistory());
                         bookingsAdapter.notifyDataSetChanged();
                     }

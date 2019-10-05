@@ -70,10 +70,11 @@ public class SubmitOtpActivity extends AppCompatActivity {
 
                     intent = new Intent(SubmitOtpActivity.this, DashBoardNewactivity.class);
                     SamsPrefs.putBoolean(SubmitOtpActivity.this, Constants.LOGGEDIN, true);
-                    SamsPrefs.putString(SubmitOtpActivity.this, Constants.MOBILE_NUMBER, loginMobileOtpResponse.getData().getCustomer().getMobileNo());
-                    SamsPrefs.putString(SubmitOtpActivity.this, Constants.ROLE, loginMobileOtpResponse.getData().getCustomer().getRoleID());
-                    SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, loginMobileOtpResponse.getData().getCustomer().getCustomerTypeID());
-                    SamsPrefs.putString(getApplicationContext(), Constants.NAME, loginMobileOtpResponse.getData().getCustomer().getUserName());
+                    SamsPrefs.putString(SubmitOtpActivity.this, Constants.MOBILE_NUMBER, loginMobileOtpResponse.getData().getUser().getMobileNo());
+                    SamsPrefs.putString(SubmitOtpActivity.this, Constants.ROLE, loginMobileOtpResponse.getData().getUser().getRoleID());
+                    SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, loginMobileOtpResponse.getData().getUser().getCustomerTypeID());
+                    SamsPrefs.putString(getApplicationContext(), Constants.NAME, loginMobileOtpResponse.getData().getUser().getUserName());
+                    SamsPrefs.putString(getApplicationContext(),Constants.EMAIL,loginMobileOtpResponse.getData().getUser().getUserEmail());
                     startActivity(intent);
                     finish();
 
@@ -81,6 +82,7 @@ public class SubmitOtpActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<LoginMobileOtpResponse> call, Throwable t) {
+                    Utils.dismissProgressDialog();
                     Toast.makeText(SubmitOtpActivity.this, "fail", Toast.LENGTH_SHORT).show();
 
                 }
