@@ -53,9 +53,9 @@ public class AssignedFragment extends Fragment implements OnBookingClickListener
         RestClient.getAssigned(emp_id, new Callback<AssignedServicesResponse>() {
             @Override
             public void onResponse(Call<AssignedServicesResponse> call, Response<AssignedServicesResponse> response) {
+                Utils.dismissProgressDialog();
 
                 if (response.code() == 200) {
-                    Utils.dismissProgressDialog();
 
                     assignedServicesResponse = response.body();
                     if (assignedServicesResponse.getStatusType().equalsIgnoreCase("Success") &&
@@ -65,6 +65,8 @@ public class AssignedFragment extends Fragment implements OnBookingClickListener
                         assignedAdapter = new AssignedAdapter(getActivity(), assignedServicesResponse.getData().getNewServiceList());
                         assignedAdapter.setOnBookingClick(AssignedFragment.this);
                         assignRecyclerView.setAdapter(assignedAdapter);
+                    }else{
+                        //handle visibility
                     }
 
 
