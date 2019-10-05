@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.e.driver.R;
@@ -27,11 +28,13 @@ public class MyBookingFragments extends Fragment {
     Bookings bookings;
     RecyclerView recyclerView;
     BookingsAdapter bookingsAdapter;
+    TextView bookingText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         recyclerView = root.findViewById(R.id.customer_booking_recycler);
+        bookingText=root.findViewById(R.id.bookingText);
         bookings = new Bookings();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         bookingsAdapter = new BookingsAdapter(getActivity(), bookings.getData().getBookingHistory());
@@ -51,6 +54,11 @@ public class MyBookingFragments extends Fragment {
                             bookings.getData().getBookingHistory() != null) {
                         bookingsAdapter.setBookingData(bookings.getData().getBookingHistory());
                         bookingsAdapter.notifyDataSetChanged();
+                    }
+                    else {
+
+                        recyclerView.setVisibility(View.GONE);
+                        bookingText.setVisibility(View.VISIBLE);
                     }
                 }
             }

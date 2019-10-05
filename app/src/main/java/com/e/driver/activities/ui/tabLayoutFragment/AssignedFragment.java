@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.e.driver.R;
 import com.e.driver.activities.UpdateBookingRequestStatusActivity;
@@ -32,12 +33,14 @@ public class AssignedFragment extends Fragment implements OnBookingClickListener
     String emp_id;
     private RecyclerView assignRecyclerView;
     AssignedAdapter assignedAdapter;
+    TextView assignText;
     AssignedServicesResponse assignedServicesResponse;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_tablayout_assigned, container, false);
         context = getActivity();
+        assignText=root.findViewById(R.id.assignText);
 
         emp_id = SamsPrefs.getString(context, Constants.CUST_ID);
         assignRecyclerView = root.findViewById(R.id.assignRecyclerView);
@@ -66,13 +69,12 @@ public class AssignedFragment extends Fragment implements OnBookingClickListener
                         assignedAdapter.setOnBookingClick(AssignedFragment.this);
                         assignRecyclerView.setAdapter(assignedAdapter);
                     }else{
+                        assignRecyclerView.setVisibility(View.GONE);
+                        assignText.setVisibility(View.VISIBLE);
                         //handle visibility
                     }
 
-
                 }
-
-
                 //   Log.d("Response",response.body().toString());
 
             }

@@ -88,7 +88,7 @@ public class DashBoardNewactivity extends AppCompatActivity
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SamsPrefs.clear(getApplicationContext());
+                SamsPrefs.clear(DashBoardNewactivity.this);
                 Intent intent = new Intent(DashBoardNewactivity.this,LoginActivity.class);
                 startActivity(intent);
                 finish();

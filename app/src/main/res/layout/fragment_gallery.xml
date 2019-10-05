@@ -10,4 +10,15 @@
         android:id="@+id/customer_booking_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/bookingText"
+        android:text="Booking Not Found"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TextView>
+
+
 </android.support.constraint.ConstraintLayout>

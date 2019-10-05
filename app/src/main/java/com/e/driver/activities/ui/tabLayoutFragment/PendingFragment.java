@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.e.driver.R;
@@ -33,6 +34,7 @@ public class PendingFragment extends Fragment implements OnBookingClickListener 
     private RecyclerView pendingRecyclerView;
     private PendingResponse pendingResponse;
     private PendingAdapter pendingAdapter;
+    TextView pendingText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class PendingFragment extends Fragment implements OnBookingClickListener 
         context = getActivity();
 
         pendingRecyclerView = root.findViewById(R.id.pendingRecyclerView);
+        pendingText=root.findViewById(R.id.pendingText);
         emp_id = SamsPrefs.getString(context, Constants.CUST_ID);
 
         getPending();
@@ -53,22 +56,23 @@ public class PendingFragment extends Fragment implements OnBookingClickListener 
         RestClient.getPending(emp_id, new Callback<PendingResponse>() {
             @Override
             public void onResponse(Call<PendingResponse> call, Response<PendingResponse> response) {
-                if (response.code() == 200) {
-                    Utils.dismissProgressDialog();
+                Utils.dismissProgressDialog();
 
+                if (response.code() == 200) {
                     pendingResponse = response.body();
                     if (pendingResponse.getStatusType().equalsIgnoreCase("Success") &&
                             pendingResponse.getData().getPendingSerivceList() != null) {
-
                         pendingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                         pendingAdapter = new PendingAdapter(getActivity(), pendingResponse.getData().getPendingSerivceList());
                         pendingAdapter.setOnBookingClick(PendingFragment.this);
                         pendingRecyclerView.setAdapter(pendingAdapter);
                     }
-                } else if (response.code() == 400) {
-                    Utils.dismissProgressDialog();
-                    Toast.makeText(context, "" + response.message(), Toast.LENGTH_SHORT).show();
+                } else{
+                    pendingRecyclerView.setVisibility(View.GONE);
+                    pendingText.setVisibility(View.VISIBLE);
+                    //handle visibility
                 }
+
 
             }
 

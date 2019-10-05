@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.e.driver.R;
 import com.e.driver.activities.UpdateBookingRequestStatusActivity;
@@ -33,13 +34,17 @@ public class CompletedFragment extends Fragment implements OnBookingClickListene
     private RecyclerView comletedRecyclerView;
     CompletedResponse completedResponse;
     CompletedAdapter completedAdapter;
+    TextView completeText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_tablayout_three, container, false);
         context = getActivity();
         comletedRecyclerView = root.findViewById(R.id.completedRecyclerView);
+        completeText=root.findViewById(R.id.completeText);
         emp_id = SamsPrefs.getString(context, Constants.CUST_ID);
+
+
         getCompleted();
 
         return root;
@@ -50,21 +55,20 @@ public class CompletedFragment extends Fragment implements OnBookingClickListene
         RestClient.getCompleted(emp_id, new Callback<CompletedResponse>() {
             @Override
             public void onResponse(Call<CompletedResponse> call, Response<CompletedResponse> response) {
+                Utils.dismissProgressDialog();
 
                 if (response.code() == 200) {
-                    Utils.dismissProgressDialog();
-
                     completedResponse = response.body();
                     if (completedResponse.getStatusType().equalsIgnoreCase("Success") &&
                             completedResponse.getData().getCompleteServiceList() != null) {
                         comletedRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
                         completedAdapter = new CompletedAdapter(getActivity(), completedResponse.getData().getCompleteServiceList());
                         completedAdapter.setOnBookingClick(CompletedFragment.this);
-
                         comletedRecyclerView.setAdapter(completedAdapter);
-
-
+                    }
+                    else {
+                        comletedRecyclerView.setVisibility(View.GONE);
+                        completeText.setVisibility(View.VISIBLE);
                     }
 
                 }

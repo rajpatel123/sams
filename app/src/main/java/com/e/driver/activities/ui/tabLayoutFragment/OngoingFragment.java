@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.e.driver.R;
 import com.e.driver.activities.UpdateBookingRequestStatusActivity;
@@ -33,6 +34,7 @@ public class OngoingFragment extends Fragment implements OnBookingClickListener 
     private RecyclerView ongoingRecyclerView;
     OngoingResponse ongoingResponse;
     OngoingAdapter ongoingAdapter;
+    TextView ongoingText;
 
 
 
@@ -43,6 +45,7 @@ public class OngoingFragment extends Fragment implements OnBookingClickListener 
 
         emp_id= SamsPrefs.getString(context,Constants.CUST_ID);
         ongoingRecyclerView=root.findViewById(R.id.ongoingRecyclerView);
+        ongoingText=root.findViewById(R.id.ongoingText);
         getOngoingService();
 
         return  root;
@@ -53,9 +56,9 @@ public class OngoingFragment extends Fragment implements OnBookingClickListener 
         RestClient.getOngoing(emp_id, new Callback<OngoingResponse>() {
             @Override
             public void onResponse(Call<OngoingResponse> call, Response<OngoingResponse> response) {
-                if (response.code()==200){
-                    Utils.dismissProgressDialog();
+                Utils.dismissProgressDialog();
 
+                if (response.code()==200){
                     ongoingResponse=response.body();
                     if (ongoingResponse.getStatusType().equalsIgnoreCase("Success")&&
                             ongoingResponse.getData().getOngoingServiceList()!=null){
@@ -63,14 +66,13 @@ public class OngoingFragment extends Fragment implements OnBookingClickListener 
                         ongoingAdapter= new OngoingAdapter(getActivity(),ongoingResponse.getData().getOngoingServiceList());
                         ongoingAdapter.setOnBookingListener(OngoingFragment.this);
                         ongoingRecyclerView.setAdapter(ongoingAdapter);
-
-
-
                     }
-
+                    else {
+                        ongoingRecyclerView.setVisibility(View.GONE);
+                        ongoingText.setVisibility(View.VISIBLE);
+                        //handle visibility
+                    }
                 }
-
-
             }
 
             @Override
