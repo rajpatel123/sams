@@ -52,8 +52,10 @@ public class MyBookingFragments extends Fragment {
                     bookings = response.body();
                     if (bookings.getStatusType().equalsIgnoreCase("Success") &&
                             bookings.getData().getBookingHistory() != null) {
+
                         bookingsAdapter.setBookingData(bookings.getData().getBookingHistory());
                         bookingsAdapter.notifyDataSetChanged();
+                        bookingText.setVisibility(View.GONE);
                     }
                     else {
 

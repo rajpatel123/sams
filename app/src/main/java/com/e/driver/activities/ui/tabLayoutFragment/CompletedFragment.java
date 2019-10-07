@@ -65,6 +65,7 @@ public class CompletedFragment extends Fragment implements OnBookingClickListene
                         completedAdapter = new CompletedAdapter(getActivity(), completedResponse.getData().getCompleteServiceList());
                         completedAdapter.setOnBookingClick(CompletedFragment.this);
                         comletedRecyclerView.setAdapter(completedAdapter);
+                        completeText.setVisibility(View.GONE);
                     }
                     else {
                         comletedRecyclerView.setVisibility(View.GONE);

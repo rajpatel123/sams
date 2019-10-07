@@ -66,6 +66,7 @@ public class PendingFragment extends Fragment implements OnBookingClickListener 
                         pendingAdapter = new PendingAdapter(getActivity(), pendingResponse.getData().getPendingSerivceList());
                         pendingAdapter.setOnBookingClick(PendingFragment.this);
                         pendingRecyclerView.setAdapter(pendingAdapter);
+                        pendingText.setVisibility(View.GONE);
                     }
                 } else{
                     pendingRecyclerView.setVisibility(View.GONE);

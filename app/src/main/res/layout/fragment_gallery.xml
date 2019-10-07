@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
+        android:background="@color/colorWhite"
         android:layout_margin="15dp"
         android:id="@+id/customer_booking_recycler"
         android:layout_width="match_parent"

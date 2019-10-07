@@ -68,6 +68,7 @@ public class AssignedFragment extends Fragment implements OnBookingClickListener
                         assignedAdapter = new AssignedAdapter(getActivity(), assignedServicesResponse.getData().getNewServiceList());
                         assignedAdapter.setOnBookingClick(AssignedFragment.this);
                         assignRecyclerView.setAdapter(assignedAdapter);
+                        assignText.setVisibility(View.GONE);
                     }else{
                         assignRecyclerView.setVisibility(View.GONE);
                         assignText.setVisibility(View.VISIBLE);

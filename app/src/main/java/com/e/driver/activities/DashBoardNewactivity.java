@@ -46,11 +46,11 @@ public class DashBoardNewactivity extends AppCompatActivity
         role = SamsPrefs.getString(this, Constants.ROLE);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
 
         View header = navigationView.getHeaderView(0);
         Menu menues = navigationView.getMenu();
@@ -82,9 +82,7 @@ public class DashBoardNewactivity extends AppCompatActivity
         mobile.setText(SamsPrefs.getString(getApplicationContext(), Constants.MOBILE_NUMBER));
         email.setText(SamsPrefs.getString(getApplicationContext(), Constants.EMAIL));
 
-
         navigationView.setNavigationItemSelectedListener(this);
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -66,6 +66,7 @@ public class OngoingFragment extends Fragment implements OnBookingClickListener 
                         ongoingAdapter= new OngoingAdapter(getActivity(),ongoingResponse.getData().getOngoingServiceList());
                         ongoingAdapter.setOnBookingListener(OngoingFragment.this);
                         ongoingRecyclerView.setAdapter(ongoingAdapter);
+                        ongoingText.setVisibility(View.GONE);
                     }
                     else {
                         ongoingRecyclerView.setVisibility(View.GONE);

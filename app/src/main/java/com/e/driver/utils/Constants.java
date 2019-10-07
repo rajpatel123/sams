@@ -16,5 +16,10 @@ public class Constants {
     public static final String CUST_ID = "login_id";
     public static final String CTYPE_ID = "cType";
     public static final String NAME = "name";
+    public static final String ORDER_ID = "order_id";
+    public static final String ORDER_NUMBER = "order_number";
+    public static final String AMOUNT = "amount";
+
+
 
 }
