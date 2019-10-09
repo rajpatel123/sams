@@ -74,11 +74,9 @@ public class DashBoardNewactivity extends AppCompatActivity
             navNewBooking.setVisible(true);
             navBooking.setVisible(true);
             replaceFragment(new HomeFragment());
-
         }
         mobile = header.findViewById(R.id.navTextViewMobile);
         email = header.findViewById(R.id.nav_textViewEmail);
-
         mobile.setText(SamsPrefs.getString(getApplicationContext(), Constants.MOBILE_NUMBER));
         email.setText(SamsPrefs.getString(getApplicationContext(), Constants.EMAIL));
 
@@ -132,7 +130,6 @@ public class DashBoardNewactivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             toolbar.setTitle("Home");
-
             replaceFragment(new HomeFragment());
             // Handle the camera action
         } else if (id == R.id.nav_mybooking) {
