@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
-* Created by AndroidIgniter on 01-02-2019.
+ * Created by AndroidIgniter on 01-02-2019.
  */
 
 public class checksum extends AppCompatActivity implements PaytmPaymentTransactionCallback {
@@ -42,8 +42,9 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         custid = SamsPrefs.getString(context,Constants.ORDER_NUMBER);
         amount=SamsPrefs.getString(context,Constants.AMOUNT);
 
-        mid = "rvoISq10523661182415"; // Nitin marchant id
-        // mid = "mNPkbB68613279213911"; //Sams  marchant id
+       // mid = "rvoISq10523661182415"; // Nitin marchant id
+       // mid = "tUVdaY96138060156260"; // Nitin marchant live id
+        mid = "mNPkbB68613279213911"; //Sams  marchant id
         //mid = "GhdiVp94450931515069"; // Mohan marchant id
         sendUserDetailTOServerdd dl = new sendUserDetailTOServerdd();
         dl.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -56,12 +57,12 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         private ProgressDialog dialog = new ProgressDialog(checksum.this);
 
         //private String orderId , mid, custid, amt;
-        String url ="http://www.vrok.in/payment/Paytm_App/generateChecksum.php";
-      //  String url ="http://samarthansapi.the-sams.com/payment/Paytm_App/generateChecksum.php";
-        String varifyurl = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID"+orderId;;
+        //String url ="http://www.vrok.in/payment/Paytm_App/generateChecksum.php";
+         String url ="http://samarthansapi.the-sams.com/payment/Paytm_App/generateChecksum.php";
+        String varifyurl = "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID="+orderId;
         String CHECKSUMHASH ="";
 
-                @Override
+        @Override
         protected void onPreExecute() {
             this.dialog.setMessage("Please wait");
             this.dialog.show();
@@ -71,9 +72,9 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
             JSONParser jsonParser = new JSONParser(checksum.this);
             String param=
                     "MID="+mid+
-                    "&ORDER_ID=" + orderId+
-                    "&CUST_ID="+custid+
-                    "&CHANNEL_ID=WAP&TXN_AMOUNT=" +amount+ "&WEBSITE=WEBSTAGING"+
+                            "&ORDER_ID=" + orderId+
+                            "&CUST_ID="+custid+
+                            "&CHANNEL_ID=WAP&TXN_AMOUNT=" +amount+ "&WEBSITE=DEFAULT"+
                             "&CALLBACK_URL="+ varifyurl+"&INDUSTRY_TYPE_ID=Retail";
 
             JSONObject jsonObject = jsonParser.makeHttpRequest(url,"POST",param);
@@ -100,9 +101,9 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
                 dialog.dismiss();
             }
 
-            PaytmPGService Service = PaytmPGService.getStagingService();
-           // when app is ready to publish use production service
-            // PaytmPGService  Service = PaytmPGService.getProductionService();
+            //PaytmPGService Service = PaytmPGService.getStagingService();
+            // when app is ready to publish use production service
+            PaytmPGService  Service = PaytmPGService.getProductionService();
 
             // now call paytm service here
             //below parameter map is required to construct PaytmOrder object, Merchant should replace below map values with his own values
@@ -113,10 +114,10 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
             paramMap.put("CUST_ID", custid);
             paramMap.put("CHANNEL_ID", "WAP");
             paramMap.put("TXN_AMOUNT", amount);
-            paramMap.put("WEBSITE", "WEBSTAGING");
+            paramMap.put("WEBSITE", "DEFAULT");
             paramMap.put("CALLBACK_URL" ,varifyurl);
             //paramMap.put( "EMAIL" , "abc@gmail.com");   // no need
-           // paramMap.put( "MOBILE_NO" , "9144040888");  // no need
+            // paramMap.put( "MOBILE_NO" , "9144040888");  // no need
             paramMap.put("CHECKSUMHASH" ,CHECKSUMHASH);
             //paramMap.put("PAYMENT_TYPE_ID" ,"CC");    // no need
             paramMap.put("INDUSTRY_TYPE_ID", "Retail");
