@@ -42,10 +42,9 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         custid = SamsPrefs.getString(context,Constants.ORDER_NUMBER);
         amount=SamsPrefs.getString(context,Constants.AMOUNT);
 
-       // mid = "rvoISq10523661182415"; // Nitin marchant id
-       // mid = "tUVdaY96138060156260"; // Nitin marchant live id
+
         mid = "mNPkbB68613279213911"; //Sams  marchant id
-        //mid = "GhdiVp94450931515069"; // Mohan marchant id
+
         sendUserDetailTOServerdd dl = new sendUserDetailTOServerdd();
         dl.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 // vollye , retrofit, asynch
