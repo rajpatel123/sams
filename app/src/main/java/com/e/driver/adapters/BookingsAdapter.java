@@ -66,7 +66,6 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
                 ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS}, 101);
             }
 
-
         }else{
             holder.booking_status.setVisibility(View.GONE);
         }
