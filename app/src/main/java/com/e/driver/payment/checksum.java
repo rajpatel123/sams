@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.e.driver.utils.Constants;
-import com.e.driver.utils.SamsPrefs;
 import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
@@ -28,8 +27,9 @@ import java.util.HashMap;
 
 public class checksum extends AppCompatActivity implements PaytmPaymentTransactionCallback {
 
-    String custid="", orderId="", mid="",amount="";
+    String custid = "", orderId = "", mid = "", amount = "";
     Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +38,12 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 
-        orderId = SamsPrefs.getString(context, Constants.ORDER_ID);
-        custid = SamsPrefs.getString(context,Constants.ORDER_NUMBER);
-        amount=SamsPrefs.getString(context,Constants.AMOUNT);
+        if (getIntent().hasExtra(Constants.AMOUNT)) {
+            orderId = getIntent().getStringExtra(Constants.ORDER_ID);
+            custid = getIntent().getStringExtra(Constants.ORDER_NUMBER);
+            amount = getIntent().getStringExtra(Constants.AMOUNT);
+
+        }
 
 
         mid = "mNPkbB68613279213911"; //Sams  marchant id
@@ -57,9 +60,9 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
 
         //private String orderId , mid, custid, amt;
         //String url ="http://www.vrok.in/payment/Paytm_App/generateChecksum.php";
-         String url ="http://samarthansapi.the-sams.com/payment/Paytm_App/generateChecksum.php";
-        String varifyurl = "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID="+orderId;
-        String CHECKSUMHASH ="";
+        String url = "http://samarthansapi.the-sams.com/payment/Paytm_App/generateChecksum.php";
+        String varifyurl = "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=" + orderId;
+        String CHECKSUMHASH = "";
 
         @Override
         protected void onPreExecute() {
@@ -69,22 +72,22 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
 
         protected String doInBackground(ArrayList<String>... alldata) {
             JSONParser jsonParser = new JSONParser(checksum.this);
-            String param=
-                    "MID="+mid+
-                            "&ORDER_ID=" + orderId+
-                            "&CUST_ID="+custid+
-                            "&CHANNEL_ID=WAP&TXN_AMOUNT=" +amount+ "&WEBSITE=DEFAULT"+
-                            "&CALLBACK_URL="+ varifyurl+"&INDUSTRY_TYPE_ID=Retail";
+            String param =
+                    "MID=" + mid +
+                            "&ORDER_ID=" + orderId +
+                            "&CUST_ID=" + custid +
+                            "&CHANNEL_ID=WAP&TXN_AMOUNT=" + amount + "&WEBSITE=DEFAULT" +
+                            "&CALLBACK_URL=" + varifyurl + "&INDUSTRY_TYPE_ID=Retail";
 
-            JSONObject jsonObject = jsonParser.makeHttpRequest(url,"POST",param);
+            JSONObject jsonObject = jsonParser.makeHttpRequest(url, "POST", param);
             // yaha per checksum ke saht order id or status receive hoga..
-            Log.e("CheckSum result >>",jsonObject.toString());
-            if(jsonObject != null){
-                Log.e("CheckSum result >>",jsonObject.toString());
+            Log.e("CheckSum result >>", jsonObject.toString());
+            if (jsonObject != null) {
+                Log.e("CheckSum result >>", jsonObject.toString());
                 try {
 
-                    CHECKSUMHASH=jsonObject.has("CHECKSUMHASH")?jsonObject.getString("CHECKSUMHASH"):"";
-                    Log.e("CheckSum result >>",CHECKSUMHASH);
+                    CHECKSUMHASH = jsonObject.has("CHECKSUMHASH") ? jsonObject.getString("CHECKSUMHASH") : "";
+                    Log.e("CheckSum result >>", CHECKSUMHASH);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -95,14 +98,14 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
 
         @Override
         protected void onPostExecute(String result) {
-            Log.e(" setup acc ","  signup result  " + result);
+            Log.e(" setup acc ", "  signup result  " + result);
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
 
             //PaytmPGService Service = PaytmPGService.getStagingService();
             // when app is ready to publish use production service
-            PaytmPGService  Service = PaytmPGService.getProductionService();
+            PaytmPGService Service = PaytmPGService.getProductionService();
 
             // now call paytm service here
             //below parameter map is required to construct PaytmOrder object, Merchant should replace below map values with his own values
@@ -114,19 +117,19 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
             paramMap.put("CHANNEL_ID", "WAP");
             paramMap.put("TXN_AMOUNT", amount);
             paramMap.put("WEBSITE", "DEFAULT");
-            paramMap.put("CALLBACK_URL" ,varifyurl);
+            paramMap.put("CALLBACK_URL", varifyurl);
             //paramMap.put( "EMAIL" , "abc@gmail.com");   // no need
             // paramMap.put( "MOBILE_NO" , "9144040888");  // no need
-            paramMap.put("CHECKSUMHASH" ,CHECKSUMHASH);
+            paramMap.put("CHECKSUMHASH", CHECKSUMHASH);
             //paramMap.put("PAYMENT_TYPE_ID" ,"CC");    // no need
             paramMap.put("INDUSTRY_TYPE_ID", "Retail");
 
             PaytmOrder Order = new PaytmOrder(paramMap);
-            Log.e("checksum ", "param "+ paramMap.toString());
-            Service.initialize(Order,null);
+            Log.e("checksum ", "param " + paramMap.toString());
+            Service.initialize(Order, null);
             // start payment service call here
             Service.startPaymentTransaction(checksum.this, true, true,
-                    checksum.this  );
+                    checksum.this);
 
 
         }
@@ -136,7 +139,12 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
 
     @Override
     public void onTransactionResponse(Bundle bundle) {
-        Log.e("checksum ", " respon true " + bundle.toString());
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("bundle", bundle);
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
+
+
     }
 
     @Override
@@ -151,22 +159,22 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
 
     @Override
     public void someUIErrorOccurred(String s) {
-        Log.e("checksum ", " ui fail respon  "+ s );
+        Log.e("checksum ", " ui fail respon  " + s);
     }
 
     @Override
     public void onErrorLoadingWebPage(int i, String s, String s1) {
-        Log.e("checksum ", " error loading pagerespon true "+ s + "  s1 " + s1);
+        Log.e("checksum ", " error loading pagerespon true " + s + "  s1 " + s1);
     }
 
     @Override
     public void onBackPressedCancelTransaction() {
-        Log.e("checksum ", " cancel call back respon  " );
+        Log.e("checksum ", " cancel call back respon  ");
     }
 
     @Override
     public void onTransactionCancel(String s, Bundle bundle) {
-        Log.e("checksum ", "  transaction cancel " );
+        Log.e("checksum ", "  transaction cancel ");
     }
 
 

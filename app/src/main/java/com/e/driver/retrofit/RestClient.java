@@ -109,4 +109,9 @@ public class RestClient {
 
         RetrofitClient.getClient().getPendingResponse(id).enqueue(callback);
     }
+
+    public static void updatePaymentTransaction(String id, Callback<PendingResponse>callback){
+
+        //RetrofitClient.getClient().updatePaymentStatus(id).enqueue(callback);
+    }
 }

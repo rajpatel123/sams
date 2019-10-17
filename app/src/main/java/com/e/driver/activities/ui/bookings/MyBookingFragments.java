@@ -1,19 +1,21 @@
 package com.e.driver.activities.ui.bookings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.e.driver.R;
 import com.e.driver.adapters.BookingsAdapter;
 import com.e.driver.models.bookings.Bookings;
+import com.e.driver.payment.checksum;
 import com.e.driver.retrofit.RestClient;
 import com.e.driver.utils.Constants;
 import com.e.driver.utils.SamsPrefs;
@@ -24,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MyBookingFragments extends Fragment {
+public class MyBookingFragments extends Fragment implements BookingsAdapter.PaymentCallInterface {
     Bookings bookings;
     RecyclerView recyclerView;
     BookingsAdapter bookingsAdapter;
@@ -39,6 +41,7 @@ public class MyBookingFragments extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         bookingsAdapter = new BookingsAdapter(getActivity(), bookings.getData().getBookingHistory());
         recyclerView.setAdapter(bookingsAdapter);
+        bookingsAdapter.setpayMentCallBack(this);
 
         getCustomerBookings();
         return root;
@@ -73,4 +76,25 @@ public class MyBookingFragments extends Fragment {
 
     }
 
+
+    @Override
+    public void onPaymentClick(String orderId, String orderNo, String balance) {
+        Intent intent=new Intent(getContext(), checksum.class);
+        intent.putExtra(Constants.ORDER_ID,orderId);
+        intent.putExtra(Constants.ORDER_NUMBER,orderNo);
+        intent.putExtra(Constants.AMOUNT,balance);
+        startActivityForResult(intent,Constants.PAYMENT_CALL);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e("checksum ", " respon true "+ data.getBundleExtra("bundle"));
+
+
+       // RestClient.updatePaymentTransaction();
+
+
+    }
 }

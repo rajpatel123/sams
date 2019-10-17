@@ -3,6 +3,7 @@ package com.e.driver.utils;
 public class Constants {
     public static final String CATEGORY = "category";
     public static final String PRIME_MEMBER="Prime Member";
+    public static final int PAYMENT_CALL = 123;
 
 
     public static String CAT_ID="cat_id";

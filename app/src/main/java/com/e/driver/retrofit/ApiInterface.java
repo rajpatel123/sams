@@ -91,16 +91,38 @@ public interface ApiInterface {
 
     @GET("api/Employee/PendingRequest")
     Call<ResponseBody> PendingRequest(@Query("id") String id,
-                                         @Query("orderno") String order,
-                                         @Query("reason") String message);
+                                      @Query("orderno") String order,
+                                      @Query("reason") String message);
 
     @GET("api/Employee/CompleteRequest")
     Call<ResponseBody> CompleteRequest(@Query("id") String id,
-                                          @Query("orderno") String order);
+                                       @Query("orderno") String order);
 
     @GET("api/Employee/ProcessRequest")
     Call<ResponseBody> ProcessRequest(@Query("id") String id,
-                                             @Query("orderno") String order);
+                                      @Query("orderno") String order);
+
+
+    @GET("api/Payment/PaymentDetails")
+    Call<ResponseBody> updatePaymentStatus(
+            @Query("MID") String mid,
+            @Query("TXNID") String txnid,
+            @Query("ORDERID") String orderId,
+            @Query("BANKTXNID") String banktxnid,
+            @Query("TXNAMOUNT") String txnAmount,
+            @Query("CURRENCY") String currency,
+            @Query("STATUS") String status,
+            @Query("RESPCODE") String response,
+            @Query("RESPMSG") String resMSG,
+            @Query("Date") String date,
+            @Query("GATEWAYNAME") String gatewayName,
+            @Query("BANKNAME") String bankName,
+            @Query("PAYTMCHECKSUM") String checksum,
+            @Query("PAYMENTMODE") String payMode,
+            @Query("email") String email,
+            @Query("orderno") String orderNo);
+
+    ;
 
 
 }
