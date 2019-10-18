@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.e.driver.utils.Constants;
+import com.google.gson.Gson;
 import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
@@ -139,8 +140,11 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
 
     @Override
     public void onTransactionResponse(Bundle bundle) {
+        String data = new Gson().toJson(bundle);
+
         Intent resultIntent = new Intent();
         resultIntent.putExtra("bundle", bundle);
+        resultIntent.putExtra("data", data);
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
 

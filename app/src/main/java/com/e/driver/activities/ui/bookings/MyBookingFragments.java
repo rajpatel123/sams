@@ -90,7 +90,7 @@ public class MyBookingFragments extends Fragment implements BookingsAdapter.Paym
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("checksum ", " respon true "+ data.getBundleExtra("bundle"));
+        Log.e("checksum ", " respon true "+ data.getStringExtra("data"));
 
 
        // RestClient.updatePaymentTransaction();

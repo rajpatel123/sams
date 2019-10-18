@@ -119,12 +119,12 @@ public class LoginActivity extends AppCompatActivity {
         String passwordd = password.getText().toString().trim();
 
         if (TextUtils.isEmpty(email.trim())) {
-            emailId.setError("Please Enter Valid Mobile Number");
+            emailId.setError("Please enter valid email");
 
             return false;
         }
         if (TextUtils.isEmpty(passwordd.trim()) && password.length() <= 6) {
-            password.setError("Please Enter Valid Mobile Number");
+            password.setError("Please enter valid password");
 
             return false;
         }
