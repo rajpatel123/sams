@@ -17,12 +17,14 @@ import com.e.driver.R;
 import com.e.driver.adapters.BookingsAdapter;
 import com.e.driver.models.bookings.Bookings;
 import com.e.driver.models.paymentTransaction.MMap;
+import com.e.driver.models.paymentTransaction.TransactionResponse;
 import com.e.driver.models.paymentTransaction.paymentTransactionRequest;
 import com.e.driver.payment.checksum;
 import com.e.driver.retrofit.RestClient;
 import com.e.driver.utils.Constants;
 import com.e.driver.utils.SamsPrefs;
 import com.e.driver.utils.Utils;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -92,8 +94,17 @@ public class MyBookingFragments extends Fragment implements BookingsAdapter.Paym
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
+
         Log.e("checksum ", " respon true " + data.getStringExtra("data"));
         if (SamsPrefs.getString(getContext(), Constants.EMAIL) != null) {
+
+            TransactionResponse transactionResponse = new Gson().fromJson(data.getStringExtra("data"),TransactionResponse.class);
+            transactionResponse.getMMap().getBANKNAME();
+            transactionResponse.getMMap().getBANKTXNID();
+            transactionResponse.getMMap().getCHECKSUMHASH();
+
             email = SamsPrefs.getString(getContext(), Constants.EMAIL);
         }
 
@@ -106,7 +117,7 @@ public class MyBookingFragments extends Fragment implements BookingsAdapter.Paym
         String txnDate = mMap.getTXNDATE();
         String txnMid = mMap.getMID();
         String txnId = mMap.getTXNID();
-        String respCode = mMap.getRESPCODE();
+        final String respCode = mMap.getRESPCODE();
         String paymentMode = mMap.getPAYMENTMODE();
         String bankTxnId = mMap.getBANKTXNID();
         String currency = mMap.getCURRENCY();
@@ -122,6 +133,8 @@ public class MyBookingFragments extends Fragment implements BookingsAdapter.Paym
                         @Override
                         public void onResponse(Call<paymentTransactionRequest> call, Response<paymentTransactionRequest> response) {
                             Utils.dismissProgressDialog();
+                            getCustomerBookings();
+
                             Toast.makeText(getContext(), "Paymment Success", Toast.LENGTH_SHORT).show();
                         }
 
