@@ -12,6 +12,7 @@ import com.e.driver.models.bookings.Bookings;
 import com.e.driver.models.cities.CityListResponce;
 import com.e.driver.models.completedService.CompletedResponse;
 import com.e.driver.models.onGoingService.OngoingResponse;
+import com.e.driver.models.paymentTransaction.paymentTransactionRequest;
 import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 
@@ -104,25 +105,25 @@ public interface ApiInterface {
 
 
     @GET("api/Payment/PaymentDetails")
-    Call<ResponseBody> updatePaymentStatus(
+    Call<paymentTransactionRequest> updatePaymentStatus(
             @Query("MID") String mid,
-            @Query("TXNID") String txnid,
-            @Query("ORDERID") String orderId,
-            @Query("BANKTXNID") String banktxnid,
-            @Query("TXNAMOUNT") String txnAmount,
-            @Query("CURRENCY") String currency,
-            @Query("STATUS") String status,
-            @Query("RESPCODE") String response,
-            @Query("RESPMSG") String resMSG,
-            @Query("Date") String date,
-            @Query("GATEWAYNAME") String gatewayName,
-            @Query("BANKNAME") String bankName,
-            @Query("PAYTMCHECKSUM") String checksum,
-            @Query("PAYMENTMODE") String payMode,
-            @Query("email") String email,
-            @Query("orderno") String orderNo);
+    @Query("TXNID") String txnid,
+    @Query("ORDERID") String orderId,
+    @Query("BANKTXNID") String banktxnid,
+    @Query("TXNAMOUNT") String txnAmount,
+    @Query("CURRENCY") String currency,
+    @Query("STATUS") String status,
+    @Query("RESPCODE") String response,
+    @Query("RESPMSG") String resMSG,
+    @Query("Date") String date,
+    @Query("GATEWAYNAME") String gatewayName,
+    @Query("BANKNAME") String bankName,
+    @Query("PAYTMCHECKSUM") String checksum,
+    @Query("PAYMENTMODE") String payMode,
+    @Query("email") String email,
+    @Query("orderno") String orderNo);
 
-    ;
+
 
 
 }
