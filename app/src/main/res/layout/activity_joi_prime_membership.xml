@@ -123,8 +123,9 @@
 
                 <Button
                     android:id="@+id/btn_joinNow"
+                    android:visibility="gone"
                     android:layout_marginTop="10dp"
-                    android:text="Join Now"
+                    android:text=""
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp"
                     android:background="@color/colorLightBlue"

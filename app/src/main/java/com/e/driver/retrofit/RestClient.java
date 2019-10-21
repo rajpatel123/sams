@@ -12,6 +12,7 @@ import com.e.driver.models.cities.CityListResponce;
 import com.e.driver.models.completedService.CompletedResponse;
 import com.e.driver.models.onGoingService.OngoingResponse;
 import com.e.driver.models.paymentTransaction.paymentTransactionRequest;
+import com.e.driver.models.paymentTransaction.primePaymentTransaction;
 import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.primeMember.PrimeOrderResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
@@ -125,7 +126,6 @@ public class RestClient {
                                                 String checksum, String payMode,
                                                 String email,
                                                 String orderNo,Callback<paymentTransactionRequest> callback) {
-
         RetrofitClient.getClient().updatePaymentStatus(id,txnid,orderId,banktxnid,txnAmount,currency,status,response,resMSG,date,gatewayName,bankName,
                 checksum,payMode,email,orderNo).enqueue(callback);
 
@@ -136,6 +136,12 @@ public class RestClient {
                   RetrofitClient.getClient().getGenOrderNum().enqueue(callback);
     }
 
+
+
+
+
+
+
     public static void updatePrimePaymentTransaction(String id, String txnid,
                                                 String orderId, String banktxnid,
                                                 String txnAmount, String currency,
@@ -143,11 +149,15 @@ public class RestClient {
                                                 String resMSG, String date,
                                                 String gatewayName, String bankName,
                                                 String checksum, String payMode,
-                                                String email,
-                                                String orderNo,String cust_name,
-                                                     String cust_login_mob,String cust_alter_mob,
-                                                     String cust_address,String cust_landmark,
-                                                     String cust_pincode, String city_id,String state_id, Callback
+                                                String email, String orderNo,
+                                                     String cust_name, String cust_login_mob,String cust_alter_mob,
+                                                     String cust_address,String cust_landmark, String cust_pincode,
+                                                     String city_id,String state_id,Callback<primePaymentTransaction>callback){
+
+        RetrofitClient.getClient().updatePrimePaymentStatus(id,txnid,orderId,banktxnid,txnAmount,currency,status,response,resMSG,date,gatewayName,bankName,
+                checksum,payMode,email,orderNo,cust_name,cust_login_mob,cust_alter_mob,cust_address,
+                cust_landmark,cust_pincode,city_id,state_id).enqueue(callback);
+    }
 
 
 }

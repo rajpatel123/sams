@@ -13,6 +13,7 @@ import com.e.driver.models.cities.CityListResponce;
 import com.e.driver.models.completedService.CompletedResponse;
 import com.e.driver.models.onGoingService.OngoingResponse;
 import com.e.driver.models.paymentTransaction.paymentTransactionRequest;
+import com.e.driver.models.paymentTransaction.primePaymentTransaction;
 import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.primeMember.PrimeOrderResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
@@ -129,7 +130,7 @@ public interface ApiInterface {
 
 
     @GET("api/Payment/PrimePaymentDetails")
-    Call<paymentTransactionRequest> updatePrimePaymentStatus(
+    Call<primePaymentTransaction> updatePrimePaymentStatus(
             @Query("MID") String mid,
             @Query("TXNID") String txnid,
             @Query("ORDERID") String orderId,
@@ -154,10 +155,5 @@ public interface ApiInterface {
             @Query("cust_pincode") String cust_pincode,
             @Query("city_id") String city_id,
             @Query("cust_landmark") String state_id);
-
-
-
-
-
 
 }

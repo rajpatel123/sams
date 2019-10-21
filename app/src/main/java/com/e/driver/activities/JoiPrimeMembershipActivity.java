@@ -14,11 +14,13 @@ import android.widget.Toast;
 import com.e.driver.R;
 import com.e.driver.models.paymentTransaction.MMap;
 import com.e.driver.models.paymentTransaction.TransactionResponse;
+import com.e.driver.models.paymentTransaction.primePaymentTransaction;
 import com.e.driver.models.primeMember.PrimeOrderResponse;
 import com.e.driver.payment.checksum;
 import com.e.driver.retrofit.RestClient;
 import com.e.driver.utils.Constants;
 import com.e.driver.utils.SamsPrefs;
+import com.e.driver.utils.Utils;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -32,6 +34,8 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
     private String loginid;
     private Context context;
     String email;
+    String name;
+    String loginMobile, AlterMobile,address,landMark,pincode,City_id,State_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +46,26 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+       name=SamsPrefs.getString(getApplicationContext(),Constants.NAME);
+       loginMobile=SamsPrefs.getString(getApplicationContext(),Constants.MOBILE_NUMBER);
+       AlterMobile=SamsPrefs.getString(getApplicationContext(),Constants.CUST_ALTER_MOB);
+       address=SamsPrefs.getString(getApplicationContext(),Constants.CUST_ADDRESS);
+       landMark=SamsPrefs.getString(getApplicationContext(),Constants.CUST_LANDMARK);
+       pincode=SamsPrefs.getString(getApplicationContext(),Constants.CUST_PINCODE);
+       City_id=SamsPrefs.getString(getApplicationContext(),Constants.CITY_ID);
+       State_id=SamsPrefs.getString(getApplicationContext(),Constants.STATE_ID);
+
+
         getPrimeOrderNo();
 
         if (getIntent().hasExtra(Constants.PRIME_MEMBER)){
             toolbar.setTitle(getIntent().getStringExtra(Constants.PRIME_MEMBER));
         }
+        float primeAmount= Float.parseFloat("1.00");
+        if (primeAmount>0){
+            joinNow.setText("Pay Now");
 
-        joinNow.setOnClickListener(new View.OnClickListener() {
+            joinNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(JoiPrimeMembershipActivity.this, checksum.class);
@@ -59,7 +76,7 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
             }
 
         });
-
+        }
 
     }
 
@@ -88,6 +105,28 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
         String currency = mMap.getCURRENCY();
         String gatewayName = mMap.getGATEWAYNAME();
         String respMsg = mMap.getRESPMSG();
+
+        if (Utils.isInternetConnected(context)){
+
+            RestClient.updatePrimePaymentTransaction(txnMid, txnId, orderId, bankTxnId, txnAmount, currency, status, respCode, respMsg, txnDate,
+                    gatewayName, bankName, checksum, paymentMode, email, loginid, name, loginMobile, AlterMobile, address, landMark, pincode,
+                    City_id, State_id, new Callback<primePaymentTransaction>() {
+                        @Override
+                        public void onResponse(Call<primePaymentTransaction> call, Response<primePaymentTransaction> response) {
+
+                            getPrimeOrderNo();
+                            Toast.makeText(context, "Payment Success", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<primePaymentTransaction> call, Throwable t) {
+
+                            Toast.makeText(context, "Payment Failed", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+        }
 
 
 
