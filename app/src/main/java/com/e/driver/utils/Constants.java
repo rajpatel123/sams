@@ -20,6 +20,13 @@ public class Constants {
     public static final String ORDER_ID = "order_id";
     public static final String ORDER_NUMBER = "order_number";
     public static final String AMOUNT = "amount";
+    public static final String CUST_ALTER_MOB = "cust_alter_mob";
+    public static final String CUST_ADDRESS = "cust_address ";
+    public static final String CUST_LANDMARK = "cust_landmark";
+    public static final String CUST_PINCODE = "cust_pincode";
+    public static final String CITY_ID = "city_id";
+    public static final String STATE_ID  = "state_id";
+    public static final String PRIME_ORDER_NUM  = "prime_order";
 
 
 

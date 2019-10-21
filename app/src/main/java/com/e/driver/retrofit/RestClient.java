@@ -13,6 +13,7 @@ import com.e.driver.models.completedService.CompletedResponse;
 import com.e.driver.models.onGoingService.OngoingResponse;
 import com.e.driver.models.paymentTransaction.paymentTransactionRequest;
 import com.e.driver.models.pendingServices.PendingResponse;
+import com.e.driver.models.primeMember.PrimeOrderResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 
 import okhttp3.ResponseBody;
@@ -130,4 +131,23 @@ public class RestClient {
 
 
     }
+
+    public static  void genPrimeOrderNum(Callback<PrimeOrderResponse> callback){
+                  RetrofitClient.getClient().getGenOrderNum().enqueue(callback);
+    }
+
+    public static void updatePrimePaymentTransaction(String id, String txnid,
+                                                String orderId, String banktxnid,
+                                                String txnAmount, String currency,
+                                                String status, String response,
+                                                String resMSG, String date,
+                                                String gatewayName, String bankName,
+                                                String checksum, String payMode,
+                                                String email,
+                                                String orderNo,String cust_name,
+                                                     String cust_login_mob,String cust_alter_mob,
+                                                     String cust_address,String cust_landmark,
+                                                     String cust_pincode, String city_id,String state_id, Callback
+
+
 }

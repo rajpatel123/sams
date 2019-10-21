@@ -161,6 +161,11 @@ public class BookRequestActivity extends AppCompatActivity {
         cust_landmark = enterLandmark.getText().toString();
         cust_pincode = enterPincode.getText().toString();
 
+        SamsPrefs.putString(getApplicationContext(),Constants.CUST_ALTER_MOB,cust_alter_mob);
+        SamsPrefs.putString(getApplicationContext(),Constants.CUST_ADDRESS,cust_address);
+        SamsPrefs.putString(getApplicationContext(),Constants.CUST_LANDMARK,cust_landmark);
+        SamsPrefs.putString(getApplicationContext(),Constants.CUST_PINCODE,cust_pincode);
+
 
         if (TextUtils.isEmpty(cust_name)) {
             Toast.makeText(this, "Please enter name", Toast.LENGTH_LONG).show();
@@ -285,6 +290,8 @@ public class BookRequestActivity extends AppCompatActivity {
                             stateName = stateResponse.getData().getStates().get(position).getStateName();
                             state_id = stateResponse.getData().getStates().get(position).getStateId();
                             getCities(state_id);
+
+                            SamsPrefs.putString(getApplicationContext(),Constants.STATE_ID,state_id);
                         }
 
                         @Override
@@ -321,7 +328,11 @@ public class BookRequestActivity extends AppCompatActivity {
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             cityName = cityListResponce.getData().getCityList().get(position).getCityName();
                             city_id = cityListResponce.getData().getCityList().get(position).getCityId();
+
+                            SamsPrefs.putString(getApplicationContext(),Constants.CITY_ID,city_id);
                         }
+
+
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {

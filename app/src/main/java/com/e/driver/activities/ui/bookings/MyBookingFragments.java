@@ -95,20 +95,14 @@ public class MyBookingFragments extends Fragment implements BookingsAdapter.Paym
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
-
         Log.e("checksum ", " respon true " + data.getStringExtra("data"));
         if (SamsPrefs.getString(getContext(), Constants.EMAIL) != null) {
-
-            TransactionResponse transactionResponse = new Gson().fromJson(data.getStringExtra("data"),TransactionResponse.class);
-            transactionResponse.getMMap().getBANKNAME();
-            transactionResponse.getMMap().getBANKTXNID();
-            transactionResponse.getMMap().getCHECKSUMHASH();
-
             email = SamsPrefs.getString(getContext(), Constants.EMAIL);
         }
 
-        MMap mMap = new MMap();
+        TransactionResponse transactionResponse = new Gson().fromJson(data.getStringExtra("data"),TransactionResponse.class);
+        MMap mMap=transactionResponse.getMMap();
+
         String status = mMap.getSTATUS();
         String checksum = mMap.getCHECKSUMHASH();
         String bankName = mMap.getBANKNAME();
