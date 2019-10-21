@@ -61,11 +61,8 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
         if (getIntent().hasExtra(Constants.PRIME_MEMBER)){
             toolbar.setTitle(getIntent().getStringExtra(Constants.PRIME_MEMBER));
         }
-        float primeAmount= Float.parseFloat("1.00");
-        if (primeAmount>0){
-            joinNow.setText("Pay Now");
 
-            joinNow.setOnClickListener(new View.OnClickListener() {
+        joinNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(JoiPrimeMembershipActivity.this, checksum.class);
@@ -76,7 +73,7 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
             }
 
         });
-        }
+
 
     }
 
