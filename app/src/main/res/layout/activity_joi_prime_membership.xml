@@ -123,20 +123,14 @@
 
                 <Button
                     android:id="@+id/btn_joinNow"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_marginTop="10dp"
-                    android:text=""
+                    android:text="Proceed"
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp"
                     android:background="@color/colorLightBlue"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </Button>
-
-
-
-
+                    android:layout_height="match_parent"/>
 
             </LinearLayout>
 

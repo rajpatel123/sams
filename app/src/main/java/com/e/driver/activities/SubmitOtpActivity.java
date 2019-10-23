@@ -75,6 +75,9 @@ public class SubmitOtpActivity extends AppCompatActivity {
                     SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, loginMobileOtpResponse.getData().getUser().getCustomerTypeID());
                     SamsPrefs.putString(getApplicationContext(), Constants.NAME, loginMobileOtpResponse.getData().getUser().getUserName());
                     SamsPrefs.putString(getApplicationContext(),Constants.EMAIL,loginMobileOtpResponse.getData().getUser().getUserEmail());
+                    SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, loginMobileOtpResponse.getData().getUser().getLoginID());
+
+
                     startActivity(intent);
                     finish();
 

@@ -45,6 +45,7 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
         holder.date.setText("Booking Date : " + bookingHistoryList.get(position).getBookingDate());
         holder.time.setText("Booking Time Slot: " + bookingHistoryList.get(position).getTimeSlotName());
         holder.amount.setText("Service Charge:  INR " + bookingHistoryList.get(position).getBalance());
+        holder.amount.setText("Booking Status  :" + bookingHistoryList.get(position).getStatusName());
         holder.booking_status.setText(bookingHistoryList.get(position).getStatusName());
 
 
@@ -102,7 +103,7 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView icon, right_icon;
-        TextView tv_category_name, date, time, amount;
+        TextView tv_category_name, date, time, amount,booking_statusText;
         Button booking_status;
         View row;
 
@@ -113,6 +114,7 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
             date = view.findViewById(R.id.date);
             time = view.findViewById(R.id.timeSlot);
             amount = view.findViewById(R.id.amount);
+            amount = view.findViewById(R.id.booking_statusText);
             booking_status = view.findViewById(R.id.booking_status);
         }
     }

@@ -106,7 +106,7 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
         String gatewayName = mMap.getGATEWAYNAME();
         String respMsg = mMap.getRESPMSG();
 
-        if (Utils.isInternetConnected(context)){
+        if (Utils.isInternetConnected(JoiPrimeMembershipActivity.this)){
 
             RestClient.updatePrimePaymentTransaction(txnMid, txnId, orderId, bankTxnId, txnAmount, currency, status, respCode, respMsg, txnDate,
                     gatewayName, bankName, checksum, paymentMode, email, loginid, name, loginMobile, AlterMobile, address, landMark, pincode,
@@ -114,8 +114,6 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<primePaymentTransaction> call, Response<primePaymentTransaction> response) {
 
-                            getPrimeOrderNo();
-                            Toast.makeText(context, "Payment Success", Toast.LENGTH_SHORT).show();
 
                         }
 

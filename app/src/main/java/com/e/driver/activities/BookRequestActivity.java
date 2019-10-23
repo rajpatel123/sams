@@ -480,8 +480,6 @@ public class BookRequestActivity extends AppCompatActivity {
                         Toast.makeText(BookRequestActivity.this, "Service booked successfully", Toast.LENGTH_LONG).show();
                         Log.d("Booking Response", response.body().toString());
 
-
-
                         finish();
                     }
 
