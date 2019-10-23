@@ -175,12 +175,12 @@ public class BookRequestActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
             return false;
         }
-        if (TextUtils.isEmpty(cust_login_mob)) {
+        if (TextUtils.isEmpty(cust_login_mob)||cust_login_mob.length()!=10) {
             Toast.makeText(this, "Please enter mobile", Toast.LENGTH_LONG).show();
             return false;
         }
 
-        if (TextUtils.isEmpty(cust_alter_mob)) {
+        if (TextUtils.isEmpty(cust_alter_mob)||cust_alter_mob.length()!=10) {
             Toast.makeText(this, "Please enter alternate mobile", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -195,7 +195,7 @@ public class BookRequestActivity extends AppCompatActivity {
             return false;
         }
 
-        if (TextUtils.isEmpty(cust_pincode)) {
+        if (TextUtils.isEmpty(cust_pincode)||cust_pincode.length()!=6) {
             Toast.makeText(this, "Please enter pincode", Toast.LENGTH_LONG).show();
             return false;
         }

@@ -27,6 +27,7 @@ public class Constants {
     public static final String CITY_ID = "city_id";
     public static final String STATE_ID  = "state_id";
     public static final String PRIME_ORDER_NUM  = "prime_order";
+    public static final String isPrime="isPrime";
 
 
 

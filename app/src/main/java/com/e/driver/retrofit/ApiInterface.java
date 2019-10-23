@@ -16,6 +16,7 @@ import com.e.driver.models.paymentTransaction.paymentTransactionRequest;
 import com.e.driver.models.paymentTransaction.primePaymentTransaction;
 import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.primeMember.PrimeOrderResponse;
+import com.e.driver.models.primePayment.PrimePaymentResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 
 import okhttp3.ResponseBody;
@@ -130,7 +131,7 @@ public interface ApiInterface {
 
 
     @GET("api/Payment/PrimePaymentDetails")
-    Call<primePaymentTransaction> updatePrimePaymentStatus(
+    Call<PrimePaymentResponse> updatePrimePaymentStatus(
             @Query("MID") String mid,
             @Query("TXNID") String txnid,
             @Query("ORDERID") String orderId,

@@ -136,8 +136,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<LoginEmailResponse> call, Response<LoginEmailResponse> response) {
                         Utils.dismissProgressDialog();
                         if (response.body() != null) {
-
-
                             Customer customer = response.body().getData().getCustomer();
                             intent = new Intent(LoginActivity.this, DashBoardNewactivity.class);
                             SamsPrefs.putBoolean(LoginActivity.this, Constants.LOGGEDIN, true);
@@ -150,8 +148,6 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                             overridePendingTransition(R.anim.enter, R.anim.exit);
-
-
                         }
 
                     }
