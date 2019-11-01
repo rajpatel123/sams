@@ -136,22 +136,24 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<LoginEmailResponse> call, Response<LoginEmailResponse> response) {
                         Utils.dismissProgressDialog();
                         if (response.body() != null) {
-
-
                             Customer customer = response.body().getData().getCustomer();
                             intent = new Intent(LoginActivity.this, DashBoardNewactivity.class);
                             SamsPrefs.putBoolean(LoginActivity.this, Constants.LOGGEDIN, true);
                             SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, customer.getLoginID());
                             SamsPrefs.putString(getApplicationContext(), Constants.ROLE, customer.getRoleID());
+                            SamsPrefs.putString(getApplicationContext(), Constants.ISPRIME, customer.getPrime());
+                            SamsPrefs.putString(getApplicationContext(), Constants.ISPRIME_DATE, customer.getPrime_End_Date());
                             SamsPrefs.putString(getApplicationContext(), Constants.MOBILE_NUMBER, customer.getMobileNo());
                             SamsPrefs.putString(getApplicationContext(), Constants.NAME, customer.getUserName());
+                            SamsPrefs.putString(getApplicationContext(), Constants.PRIME_DISCOUNT, customer.getPrime_Membership_Discount());
+                            SamsPrefs.putString(getApplicationContext(), Constants.ADDRESSS, customer.getAddress());
+                            SamsPrefs.putString(getApplicationContext(), Constants.ADDRESSS, customer.getLandmark());
+
                             SamsPrefs.putString(getApplicationContext(), Constants.EMAIL, emailId.getText().toString());
                             SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, customer.getCustomerTypeID());
                             startActivity(intent);
                             finish();
                             overridePendingTransition(R.anim.enter, R.anim.exit);
-
-
                         }
 
                     }

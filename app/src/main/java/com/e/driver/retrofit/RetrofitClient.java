@@ -49,7 +49,7 @@ public class RetrofitClient {
     private static Retrofit retrofitBuilder() {
         return new Retrofit.Builder()
                 .client(okHttp())
-                .baseUrl("http://samarthansapi.the-sams.com/")
+                .baseUrl("http://18.222.250.20:8101/")
                 .addConverterFactory(GsonConverterFactory.create(gson()))
                 .build();
     }

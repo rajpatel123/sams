@@ -16,6 +16,7 @@ import com.e.driver.models.paymentTransaction.MMap;
 import com.e.driver.models.paymentTransaction.TransactionResponse;
 import com.e.driver.models.paymentTransaction.primePaymentTransaction;
 import com.e.driver.models.primeMember.PrimeOrderResponse;
+import com.e.driver.models.primePayment.PrimePaymentResponse;
 import com.e.driver.payment.checksum;
 import com.e.driver.retrofit.RestClient;
 import com.e.driver.utils.Constants;
@@ -33,6 +34,7 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
     private String primrOrder;
     private String loginid;
     private Context context;
+    private Boolean isPrime;
     String email;
     String name;
     String loginMobile, AlterMobile,address,landMark,pincode,City_id,State_id;
@@ -46,26 +48,13 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       name=SamsPrefs.getString(getApplicationContext(),Constants.NAME);
-       loginMobile=SamsPrefs.getString(getApplicationContext(),Constants.MOBILE_NUMBER);
-       AlterMobile=SamsPrefs.getString(getApplicationContext(),Constants.CUST_ALTER_MOB);
-       address=SamsPrefs.getString(getApplicationContext(),Constants.CUST_ADDRESS);
-       landMark=SamsPrefs.getString(getApplicationContext(),Constants.CUST_LANDMARK);
-       pincode=SamsPrefs.getString(getApplicationContext(),Constants.CUST_PINCODE);
-       City_id=SamsPrefs.getString(getApplicationContext(),Constants.CITY_ID);
-       State_id=SamsPrefs.getString(getApplicationContext(),Constants.STATE_ID);
-
-
         getPrimeOrderNo();
 
         if (getIntent().hasExtra(Constants.PRIME_MEMBER)){
             toolbar.setTitle(getIntent().getStringExtra(Constants.PRIME_MEMBER));
         }
-        float primeAmount= Float.parseFloat("1.00");
-        if (primeAmount>0){
-            joinNow.setText("Pay Now");
 
-            joinNow.setOnClickListener(new View.OnClickListener() {
+        joinNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(JoiPrimeMembershipActivity.this, checksum.class);
@@ -76,57 +65,78 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
             }
 
         });
-        }
 
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data) {
+    protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("checksum ", " respon true " + data.getStringExtra("data"));
+        try{
 
-        if (SamsPrefs.getString(context, Constants.EMAIL) != null) {
-            email = SamsPrefs.getString(context, Constants.EMAIL);
+            if (SamsPrefs.getString(context, Constants.EMAIL) != null) {
+                email = SamsPrefs.getString(context, Constants.EMAIL);
+                name=SamsPrefs.getString(getApplicationContext(),Constants.NAME);
+                loginMobile=SamsPrefs.getString(getApplicationContext(),Constants.MOBILE_NUMBER);
+                AlterMobile=SamsPrefs.getString(getApplicationContext(),Constants.CUST_ALTER_MOB);
+                address=SamsPrefs.getString(getApplicationContext(),Constants.CUST_ADDRESS);
+                landMark=SamsPrefs.getString(getApplicationContext(),Constants.CUST_LANDMARK);
+                pincode=SamsPrefs.getString(getApplicationContext(),Constants.CUST_PINCODE);
+                City_id=SamsPrefs.getString(getApplicationContext(),Constants.CITY_ID);
+                State_id=SamsPrefs.getString(getApplicationContext(),Constants.STATE_ID);
+            }
+            TransactionResponse transactionResponse = new Gson().fromJson(data.getStringExtra("data"),TransactionResponse.class);
+            MMap mMap=transactionResponse.getMMap();
+            String status = mMap.getSTATUS();
+            String checksum = mMap.getCHECKSUMHASH();
+            String bankName = mMap.getBANKNAME();
+            String orderId = mMap.getORDERID();
+            String txnAmount = mMap.getTXNAMOUNT();
+            String txnDate = mMap.getTXNDATE();
+            String txnMid = mMap.getMID();
+            String txnId = mMap.getTXNID();
+            final String respCode = mMap.getRESPCODE();
+            String paymentMode = mMap.getPAYMENTMODE();
+            String bankTxnId = mMap.getBANKTXNID();
+            String currency = mMap.getCURRENCY();
+            String gatewayName = mMap.getGATEWAYNAME();
+            String respMsg = mMap.getRESPMSG();
+
+            if (Utils.isInternetConnected(JoiPrimeMembershipActivity.this)){
+
+                RestClient.updatePrimePaymentTransaction(txnMid, txnId, orderId, bankTxnId, txnAmount, currency, status, respCode, respMsg, txnDate,
+                        gatewayName, bankName, checksum, paymentMode, email, loginid, name, loginMobile, AlterMobile, address, landMark, pincode,
+                        ""+1, ""+1, new Callback<PrimePaymentResponse>() {
+                            @Override
+                            public void onResponse(Call<PrimePaymentResponse> call, Response<PrimePaymentResponse> response) {
+                                PrimePaymentResponse primePaymentResponse=response.body();
+
+                                if (primePaymentResponse.getStatusType().equalsIgnoreCase("Success")&&
+                                        primePaymentResponse.getData()!=null){
+
+                                    SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, primePaymentResponse.getData().getNewCType());
+                                    SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, primePaymentResponse.getData().getNewLoginId());
+
+                                    SamsPrefs.putString(JoiPrimeMembershipActivity.this,Constants.ISPRIME,primePaymentResponse.getData().getPrime());
+                                    SamsPrefs.putString(JoiPrimeMembershipActivity.this,Constants.ISPRIME_DATE,primePaymentResponse.getData().getPrimeEndDate());
+                                }
+                                //getPrimeOrderNo();
+                                Toast.makeText(context, "Payment Success", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<PrimePaymentResponse> call, Throwable t) {
+
+                                Toast.makeText(context, "Payment Failed", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+            }else{
+                Toast.makeText(context, "connection failure", Toast.LENGTH_SHORT).show();
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        TransactionResponse transactionResponse = new Gson().fromJson(data.getStringExtra("data"),TransactionResponse.class);
-        MMap mMap=transactionResponse.getMMap();
-
-        String status = mMap.getSTATUS();
-        String checksum = mMap.getCHECKSUMHASH();
-        String bankName = mMap.getBANKNAME();
-        String orderId = mMap.getORDERID();
-        String txnAmount = mMap.getTXNAMOUNT();
-        String txnDate = mMap.getTXNDATE();
-        String txnMid = mMap.getMID();
-        String txnId = mMap.getTXNID();
-        final String respCode = mMap.getRESPCODE();
-        String paymentMode = mMap.getPAYMENTMODE();
-        String bankTxnId = mMap.getBANKTXNID();
-        String currency = mMap.getCURRENCY();
-        String gatewayName = mMap.getGATEWAYNAME();
-        String respMsg = mMap.getRESPMSG();
-
-        if (Utils.isInternetConnected(JoiPrimeMembershipActivity.this)){
-
-            RestClient.updatePrimePaymentTransaction(txnMid, txnId, orderId, bankTxnId, txnAmount, currency, status, respCode, respMsg, txnDate,
-                    gatewayName, bankName, checksum, paymentMode, email, loginid, name, loginMobile, AlterMobile, address, landMark, pincode,
-                    City_id, State_id, new Callback<primePaymentTransaction>() {
-                        @Override
-                        public void onResponse(Call<primePaymentTransaction> call, Response<primePaymentTransaction> response) {
-
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<primePaymentTransaction> call, Throwable t) {
-
-                            Toast.makeText(context, "Payment Failed", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-        }
-
-
 
     }
 

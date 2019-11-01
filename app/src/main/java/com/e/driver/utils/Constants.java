@@ -4,6 +4,11 @@ public class Constants {
     public static final String CATEGORY = "category";
     public static final String PRIME_MEMBER="Prime Member";
     public static final int PAYMENT_CALL = 123;
+    public static final String ISPRIME = "isPrime";
+    public static final String ISPRIME_DATE = "pDate";
+    public static final String PRIME_DISCOUNT = "discount";
+    public static final String ADDRESSS ="address" ;
+    public static final String LANDMARK ="landmark" ;
 
 
     public static String CAT_ID="cat_id";
@@ -27,6 +32,7 @@ public class Constants {
     public static final String CITY_ID = "city_id";
     public static final String STATE_ID  = "state_id";
     public static final String PRIME_ORDER_NUM  = "prime_order";
+    public static final String isPrime="isPrime";
 
 
 

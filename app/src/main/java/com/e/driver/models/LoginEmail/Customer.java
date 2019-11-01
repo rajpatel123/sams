@@ -37,6 +37,43 @@ public class Customer {
     @Expose
     private String pincode;
 
+    public String getPrime_End_Date() {
+        return prime_End_Date;
+    }
+
+    public void setPrime_End_Date(String prime_End_Date) {
+        this.prime_End_Date = prime_End_Date;
+    }
+
+    @SerializedName("Prime_End_Date")
+    @Expose
+    private String prime_End_Date;
+
+
+    public String getPrime_Membership_Discount() {
+        return prime_Membership_Discount;
+    }
+
+    public void setPrime_Membership_Discount(String prime_Membership_Discount) {
+        this.prime_Membership_Discount = prime_Membership_Discount;
+    }
+
+    public String getPrime() {
+        return prime;
+    }
+
+    public void setPrime(String prime) {
+        this.prime = prime;
+    }
+
+    @SerializedName("Prime_Membership_Discount")
+    @Expose
+    private String prime_Membership_Discount;
+
+  @SerializedName("Prime")
+    @Expose
+    private String prime;
+
     public String getUserName() {
         return userName;
     }

@@ -45,14 +45,15 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
         holder.date.setText("Booking Date : " + bookingHistoryList.get(position).getBookingDate());
         holder.time.setText("Booking Time Slot: " + bookingHistoryList.get(position).getTimeSlotName());
         holder.amount.setText("Service Charge:  INR " + bookingHistoryList.get(position).getBalance());
-        holder.amount.setText("Booking Status  :" + bookingHistoryList.get(position).getStatusName());
+        holder.booking_statusText.setText("Booking Status  :" + bookingHistoryList.get(position).getStatusName());
+        holder.orderNo.setText("Order No  :" + bookingHistoryList.get(position).getOrderNo());
         holder.booking_status.setText(bookingHistoryList.get(position).getStatusName());
 
 
         amountt = Float.parseFloat((bookingHistoryList.get(position).getBalance()));
 
         if (amountt > 0) {
-            holder.booking_status.setText("paynow");
+            holder.booking_status.setText("pay now");
             holder.booking_status.setVisibility(View.VISIBLE);
             holder.booking_status.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,7 +104,7 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView icon, right_icon;
-        TextView tv_category_name, date, time, amount,booking_statusText;
+        TextView tv_category_name, date, time, amount,booking_statusText,orderNo;
         Button booking_status;
         View row;
 
@@ -113,8 +114,9 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.ViewHo
             tv_category_name = view.findViewById(R.id.tv_category_name);
             date = view.findViewById(R.id.date);
             time = view.findViewById(R.id.timeSlot);
+            orderNo = view.findViewById(R.id.orderno);
             amount = view.findViewById(R.id.amount);
-            amount = view.findViewById(R.id.booking_statusText);
+            booking_statusText = view.findViewById(R.id.booking_statusText);
             booking_status = view.findViewById(R.id.booking_status);
         }
     }

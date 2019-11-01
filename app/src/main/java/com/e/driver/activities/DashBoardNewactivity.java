@@ -32,7 +32,7 @@ public class DashBoardNewactivity extends AppCompatActivity
     private TextView email;
     private Toolbar toolbar;
     String role;
-    private MenuItem navHome,navPrime,navBooking,navNewBooking;
+    private MenuItem navHome, navPrime, navBooking, navNewBooking;
     private Button logout;
 
     @Override
@@ -61,16 +61,23 @@ public class DashBoardNewactivity extends AppCompatActivity
         navPrime = menues.findItem(R.id.nav_prime_member);
 
 
-        if (role.equalsIgnoreCase("2")){
+        if (role.equalsIgnoreCase("2")) {
             navHome.setVisible(false);
             navPrime.setVisible(false);
             navNewBooking.setVisible(false);
             navBooking.setVisible(true);
             replaceFragment(new TablayoutFragment());
 
-        }else{
+        } else {
             navHome.setVisible(true);
-            navPrime.setVisible(true);
+//            if (SamsPrefs.getString(DashBoardNewactivity.this, Constants.ISPRIME).equalsIgnoreCase("TRUE")) {
+//                navPrime.setTitle("Prime Membership till-" + SamsPrefs.getString(DashBoardNewactivity.this, Constants.ISPRIME_DATE));
+//            } else {
+//                navPrime.setVisible(true);
+//            }
+
+            navPrime.setVisible(false);
+
             navNewBooking.setVisible(true);
             navBooking.setVisible(true);
             replaceFragment(new HomeFragment());
@@ -85,7 +92,7 @@ public class DashBoardNewactivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 SamsPrefs.clear(DashBoardNewactivity.this);
-                Intent intent = new Intent(DashBoardNewactivity.this,LoginActivity.class);
+                Intent intent = new Intent(DashBoardNewactivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -148,9 +155,12 @@ public class DashBoardNewactivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_prime_member) {
-            Intent intent = new Intent(DashBoardNewactivity.this, JoiPrimeMembershipActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.enter, R.anim.exit);
+            if (!SamsPrefs.getString(DashBoardNewactivity.this, Constants.ISPRIME).equalsIgnoreCase("TRUE")) {
+                Intent intent = new Intent(DashBoardNewactivity.this, JoiPrimeMembershipActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
+
+            }
 
 
         } else if (id == R.id.nav_rateus) {
@@ -158,18 +168,22 @@ public class DashBoardNewactivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Text");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "");
             sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject");
             startActivity(Intent.createChooser(sharingIntent, "Share using"));
 
         } else if (id == R.id.nav_about) {
-            replaceFragment(new AboutFragment());
-            toolbar.setTitle("About Us");
 
+            Intent intent = new Intent(DashBoardNewactivity.this,WebViewActivity.class);
+            intent.putExtra("title","About Us");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_help) {
-            replaceFragment(new HelpFragment());
-            toolbar.setTitle("Help");
+        } else if (id == R.id.nav_privacy) {
+            Intent intent = new Intent(DashBoardNewactivity.this,WebViewActivity.class);
+            intent.putExtra("title","Privacy Policy");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
 
 
         }

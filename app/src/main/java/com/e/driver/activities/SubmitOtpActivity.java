@@ -73,9 +73,14 @@ public class SubmitOtpActivity extends AppCompatActivity {
                     SamsPrefs.putString(SubmitOtpActivity.this, Constants.MOBILE_NUMBER, loginMobileOtpResponse.getData().getUser().getMobileNo());
                     SamsPrefs.putString(SubmitOtpActivity.this, Constants.ROLE, loginMobileOtpResponse.getData().getUser().getRoleID());
                     SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, loginMobileOtpResponse.getData().getUser().getCustomerTypeID());
+                    SamsPrefs.putString(getApplicationContext(), Constants.ISPRIME, loginMobileOtpResponse.getData().getUser().getPrime());
+                    SamsPrefs.putString(getApplicationContext(), Constants.ISPRIME_DATE, loginMobileOtpResponse.getData().getUser().getPrimeEndDate());
+                    SamsPrefs.putString(getApplicationContext(), Constants.PRIME_DISCOUNT, loginMobileOtpResponse.getData().getUser().getPrime_Membership_Discount());
                     SamsPrefs.putString(getApplicationContext(), Constants.NAME, loginMobileOtpResponse.getData().getUser().getUserName());
                     SamsPrefs.putString(getApplicationContext(),Constants.EMAIL,loginMobileOtpResponse.getData().getUser().getUserEmail());
                     SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, loginMobileOtpResponse.getData().getUser().getLoginID());
+                    SamsPrefs.putString(getApplicationContext(), Constants.ADDRESSS,  loginMobileOtpResponse.getData().getUser().getAddress());
+                    SamsPrefs.putString(getApplicationContext(), Constants.LANDMARK,  loginMobileOtpResponse.getData().getUser().getLandmark());
 
 
                     startActivity(intent);

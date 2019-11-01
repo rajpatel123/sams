@@ -16,6 +16,7 @@ import com.e.driver.models.paymentTransaction.paymentTransactionRequest;
 import com.e.driver.models.paymentTransaction.primePaymentTransaction;
 import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.primeMember.PrimeOrderResponse;
+import com.e.driver.models.primePayment.PrimePaymentResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 
 import okhttp3.ResponseBody;
@@ -130,7 +131,7 @@ public interface ApiInterface {
 
 
     @GET("api/Payment/PrimePaymentDetails")
-    Call<primePaymentTransaction> updatePrimePaymentStatus(
+    Call<PrimePaymentResponse> updatePrimePaymentStatus(
             @Query("MID") String mid,
             @Query("TXNID") String txnid,
             @Query("ORDERID") String orderId,
@@ -146,7 +147,7 @@ public interface ApiInterface {
             @Query("PAYTMCHECKSUM") String checksum,
             @Query("PAYMENTMODE") String payMode,
             @Query("email") String email,
-            @Query("orderno") String orderNo,
+            @Query("cust_id") String cust_id,
             @Query("cust_name") String cust_name,
             @Query("cust_login_mob") String cust_login_mob,
             @Query("cust_alter_mob") String cust_alter_mob,
@@ -154,6 +155,6 @@ public interface ApiInterface {
             @Query("cust_landmark") String cust_landmark,
             @Query("cust_pincode") String cust_pincode,
             @Query("city_id") String city_id,
-            @Query("cust_landmark") String state_id);
+            @Query("state_id") String state_id);
 
 }

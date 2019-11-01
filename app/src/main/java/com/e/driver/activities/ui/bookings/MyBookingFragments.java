@@ -49,8 +49,15 @@ public class MyBookingFragments extends Fragment implements BookingsAdapter.Paym
         recyclerView.setAdapter(bookingsAdapter);
         bookingsAdapter.setpayMentCallBack(this);
 
-        getCustomerBookings();
         return root;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getCustomerBookings();
+
     }
 
     private void getCustomerBookings() {
@@ -87,7 +94,7 @@ public class MyBookingFragments extends Fragment implements BookingsAdapter.Paym
         Intent intent = new Intent(getContext(), checksum.class);
         intent.putExtra(Constants.ORDER_ID, orderId);
         intent.putExtra(Constants.ORDER_NUMBER, orderNo);
-        intent.putExtra(Constants.AMOUNT, balance);
+        intent.putExtra(Constants.AMOUNT, ""+balance);
         startActivityForResult(intent, Constants.PAYMENT_CALL);
     }
 
@@ -129,7 +136,7 @@ public class MyBookingFragments extends Fragment implements BookingsAdapter.Paym
                             Utils.dismissProgressDialog();
                             getCustomerBookings();
 
-                            Toast.makeText(getContext(), "Paymment Success", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getContext(), "Paymment Success", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override

@@ -15,6 +15,7 @@ import com.e.driver.models.paymentTransaction.paymentTransactionRequest;
 import com.e.driver.models.paymentTransaction.primePaymentTransaction;
 import com.e.driver.models.pendingServices.PendingResponse;
 import com.e.driver.models.primeMember.PrimeOrderResponse;
+import com.e.driver.models.primePayment.PrimePaymentResponse;
 import com.e.driver.models.submit_otp.LoginMobileOtpResponse;
 
 import okhttp3.ResponseBody;
@@ -135,13 +136,6 @@ public class RestClient {
     public static  void genPrimeOrderNum(Callback<PrimeOrderResponse> callback){
                   RetrofitClient.getClient().getGenOrderNum().enqueue(callback);
     }
-
-
-
-
-
-
-
     public static void updatePrimePaymentTransaction(String id, String txnid,
                                                 String orderId, String banktxnid,
                                                 String txnAmount, String currency,
@@ -149,13 +143,13 @@ public class RestClient {
                                                 String resMSG, String date,
                                                 String gatewayName, String bankName,
                                                 String checksum, String payMode,
-                                                String email, String orderNo,
+                                                String email, String cust_id,
                                                      String cust_name, String cust_login_mob,String cust_alter_mob,
                                                      String cust_address,String cust_landmark, String cust_pincode,
-                                                     String city_id,String state_id,Callback<primePaymentTransaction>callback){
+                                                     String city_id,String state_id,Callback<PrimePaymentResponse>callback){
 
         RetrofitClient.getClient().updatePrimePaymentStatus(id,txnid,orderId,banktxnid,txnAmount,currency,status,response,resMSG,date,gatewayName,bankName,
-                checksum,payMode,email,orderNo,cust_name,cust_login_mob,cust_alter_mob,cust_address,
+                checksum,payMode,email,cust_id,cust_name,cust_login_mob,cust_alter_mob,cust_address,
                 cust_landmark,cust_pincode,city_id,state_id).enqueue(callback);
     }
 

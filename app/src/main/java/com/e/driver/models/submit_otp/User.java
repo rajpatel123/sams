@@ -43,6 +43,30 @@ public class User {
     @Expose
     private String roleName;
 
+    public String getPrime_Membership_Discount() {
+        return prime_Membership_Discount;
+    }
+
+    public void setPrime_Membership_Discount(String prime_Membership_Discount) {
+        this.prime_Membership_Discount = prime_Membership_Discount;
+    }
+
+    public String getPrime() {
+        return prime;
+    }
+
+    public void setPrime(String prime) {
+        this.prime = prime;
+    }
+
+    @SerializedName("Prime_Membership_Discount")
+    @Expose
+    private String prime_Membership_Discount;
+
+    @SerializedName("Prime")
+    @Expose
+    private String prime;
+
     public String getUserName() {
         return userName;
     }

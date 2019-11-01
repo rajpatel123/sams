@@ -32,7 +32,7 @@
         android:layout_height="match_parent">
         <ImageView
             android:layout_gravity="center"
-            android:src="@drawable/splash"
+            android:src="@drawable/logo"
             android:layout_width="120dp"
             android:layout_height="120dp">
         </ImageView>
@@ -123,14 +123,20 @@
 
                 <Button
                     android:id="@+id/btn_joinNow"
-                    android:visibility="visible"
                     android:layout_marginTop="10dp"
-                    android:text="Proceed"
+                    android:text="Join Now"
+                    android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp"
                     android:background="@color/colorLightBlue"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent">
+
+                </Button>
+
+
+
+
 
             </LinearLayout>
 
