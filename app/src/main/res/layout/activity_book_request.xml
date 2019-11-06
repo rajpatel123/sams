@@ -67,6 +67,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"/>
 
+
+            <TextView
+                android:text="Service Charge"
+                android:textColor="#3F3C3C"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/charge"
+                android:focusable="false"
+                android:background="@drawable/edibox_border"
+                android:hint=""
+
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
             <TextView
                 android:text="Date"
                 android:textColor="#3F3C3C"

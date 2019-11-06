@@ -29,9 +29,10 @@
             android:layout_height="wrap_content"
             android:hint="Enter OTP here"
             android:padding="7dp"
+            android:digits="0123456789"
             android:layout_margin="5dp"
             android:background="@drawable/edibox_border"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             />
 
         <Button
