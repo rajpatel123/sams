@@ -46,8 +46,7 @@ android {
 
 
          debug {
-            def uatSigningKey = signingConfigs.sams
-            signingConfig uatSigningKey
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
