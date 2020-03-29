@@ -12,6 +12,19 @@ public class Data {
     @SerializedName("newCType")
     @Expose
     private String newCType;
+
+
+    public String getTotcount() {
+        return totcount;
+    }
+
+    public void setTotcount(String totcount) {
+        this.totcount = totcount;
+    }
+
+    @SerializedName("totcount")
+    @Expose
+    private String totcount;
     @SerializedName("Prime")
     @Expose
     private String prime;

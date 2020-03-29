@@ -9,11 +9,12 @@ public class Constants {
     public static final String PRIME_DISCOUNT = "discount";
     public static final String ADDRESSS ="address" ;
     public static final String LANDMARK ="landmark" ;
+    public static final String PRIME_COUNT = "prime_count";
 
 
     public static String CAT_ID="cat_id";
     public static String MOBILE_NUMBER="mobile_number";
-    public static String BASE_URL="http://samarthansapi.the-sams.com";
+    public static String BASE_URL="http://samsapi.supportbuddy.in/";
     public static String SUB_CAT_ID="sub_cat_id";
     public static  String SUB_CAT_NAME="subCategory_name";
     public static final String LOGGEDIN = "loggedin";

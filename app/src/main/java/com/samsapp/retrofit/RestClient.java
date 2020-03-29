@@ -77,12 +77,12 @@ public class RestClient {
                                    String city_id, String state_id, String price,
                                    String prime_member_discount, String booking_date,
                                    String time_slot_id, String created_by, String modified_by,
-                                   String service_category_id, String service_list_id, Callback<ResponseBody> callback) {
+                                   String service_category_id, String service_list_id, String primeCount,Callback<ResponseBody> callback) {
 
         RetrofitClient.getClient().bookNewService(cust_id, cust_name, cust_email, cust_login_mob,
                 cust_alter_mob, ctype_id, cust_address, cust_landmark, cust_pincode, city_id, state_id,
                 price, prime_member_discount, booking_date, time_slot_id, created_by, modified_by, service_category_id,
-                service_list_id).enqueue(callback);
+                service_list_id,primeCount).enqueue(callback);
 
     }
 

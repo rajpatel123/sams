@@ -70,13 +70,12 @@ public class DashBoardNewactivity extends AppCompatActivity
 
         } else {
             navHome.setVisible(true);
-//            if (SamsPrefs.getString(DashBoardNewactivity.this, Constants.ISPRIME).equalsIgnoreCase("TRUE")) {
-//                navPrime.setTitle("Prime Membership till-" + SamsPrefs.getString(DashBoardNewactivity.this, Constants.ISPRIME_DATE));
-//            } else {
-//                navPrime.setVisible(true);
-//            }
+            if (SamsPrefs.getString(DashBoardNewactivity.this, Constants.ISPRIME).equalsIgnoreCase("TRUE")) {
+                navPrime.setTitle("Prime Membership till-" + SamsPrefs.getString(DashBoardNewactivity.this, Constants.ISPRIME_DATE));
+            } else {
+                navPrime.setVisible(true);
+            }
 
-            navPrime.setVisible(false);
 
             navNewBooking.setVisible(true);
             navBooking.setVisible(true);

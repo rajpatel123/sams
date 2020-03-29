@@ -153,6 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                                 SamsPrefs.putString(getApplicationContext(), Constants.MOBILE_NUMBER, customer.getData().getUser().getMobileNo());
                                 SamsPrefs.putString(getApplicationContext(), Constants.NAME, customer.getData().getUser().getUserName());
                                 SamsPrefs.putString(getApplicationContext(), Constants.PRIME_DISCOUNT, customer.getData().getUser().getPrimeMembershipDiscount());
+                                SamsPrefs.putString(getApplicationContext(), Constants.PRIME_COUNT, customer.getData().getUser().getTotalCount());
                                 SamsPrefs.putString(getApplicationContext(), Constants.ADDRESSS, customer.getData().getUser().getAddress());
                                 SamsPrefs.putString(getApplicationContext(), Constants.ADDRESSS, customer.getData().getUser().getLandmark());
 

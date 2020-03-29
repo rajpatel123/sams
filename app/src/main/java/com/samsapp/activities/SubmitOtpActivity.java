@@ -81,6 +81,7 @@ public class SubmitOtpActivity extends AppCompatActivity {
                         SamsPrefs.putString(getApplicationContext(), Constants.PRIME_DISCOUNT, loginMobileOtpResponse.getData().getUser().getPrime_Membership_Discount());
                         SamsPrefs.putString(getApplicationContext(), Constants.NAME, loginMobileOtpResponse.getData().getUser().getUserName());
                         SamsPrefs.putString(getApplicationContext(),Constants.EMAIL,loginMobileOtpResponse.getData().getUser().getUserEmail());
+                        SamsPrefs.putString(getApplicationContext(),Constants.PRIME_COUNT,loginMobileOtpResponse.getData().getUser().getTotalCount());
                         SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, loginMobileOtpResponse.getData().getUser().getLoginID());
                         SamsPrefs.putString(getApplicationContext(), Constants.ADDRESSS,  loginMobileOtpResponse.getData().getUser().getAddress());
                         SamsPrefs.putString(getApplicationContext(), Constants.LANDMARK,  loginMobileOtpResponse.getData().getUser().getLandmark());

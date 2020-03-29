@@ -10,6 +10,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.samsapp.utils.Constants.BASE_URL;
+
 public class RetrofitClient {
 
 
@@ -49,7 +51,7 @@ public class RetrofitClient {
     private static Retrofit retrofitBuilder() {
         return new Retrofit.Builder()
                 .client(okHttp())
-                .baseUrl("http://samarthansapi.the-sams.com/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson()))
                 .build();
     }

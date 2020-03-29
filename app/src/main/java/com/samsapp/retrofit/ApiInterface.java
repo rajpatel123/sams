@@ -80,7 +80,8 @@ public interface ApiInterface {
                                       @Query("created_by") String created_by,
                                       @Query("modified_by") String modified_by,
                                       @Query("service_category_id") String service_category_id,
-                                      @Query("service_list_id") String service_list_id);
+                                      @Query("service_list_id") String service_list_id,
+                                      @Query("primeCount") String primeCount);
 
     @GET("api/Employee/NewRequestList")
     Call<AssignedServicesResponse> getAssignedResponse(@Query("id") String id);

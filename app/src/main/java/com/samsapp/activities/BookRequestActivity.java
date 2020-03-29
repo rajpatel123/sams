@@ -468,7 +468,7 @@ public class BookRequestActivity extends AppCompatActivity {
         RestClient.bookService(cust_id, cust_name, cust_email, cust_login_mob, cust_alter_mob,
                 ctype_id, cust_address, cust_landmark, cust_pincode, city_id, state_id, price,
                 prime_member_discount, booking_date, time_slot_id, "2", "2",
-                service_category_id, service_list_id, new Callback<ResponseBody>() {
+                service_category_id, service_list_id, SamsPrefs.getString(this,Constants.PRIME_COUNT), new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         Utils.dismissProgressDialog();
@@ -483,6 +483,7 @@ public class BookRequestActivity extends AppCompatActivity {
                                     if (dataObj.has("cust_id")) {
                                         SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, "" + dataObj.getInt("cust_id"));
                                         SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, "" + dataObj.getInt("ctype_id"));
+                                        SamsPrefs.putString(getApplicationContext(), Constants.PRIME_COUNT, "" + dataObj.getInt("totcount"));
                                     }
                                 }
                             } else {

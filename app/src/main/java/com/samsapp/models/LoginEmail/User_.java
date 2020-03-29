@@ -32,6 +32,19 @@ private String mobileNo;
 @SerializedName("Address")
 @Expose
 private String address;
+
+
+    public String getTotcount() {
+        return totcount;
+    }
+
+    public void setTotcount(String totcount) {
+        this.totcount = totcount;
+    }
+
+    @SerializedName("totcount")
+@Expose
+private String totcount;
 @SerializedName("Landmark")
 @Expose
 private String landmark;

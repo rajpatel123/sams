@@ -37,7 +37,7 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
     private Boolean isPrime;
     String email;
     String name;
-    String loginMobile, AlterMobile,address,landMark,pincode,City_id,State_id;
+    String loginMobile, AlterMobile="8474787487",address="NA",landMark="na",pincode="201301",City_id,State_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +115,7 @@ public class JoiPrimeMembershipActivity extends AppCompatActivity {
 
                                     SamsPrefs.putString(getApplicationContext(), Constants.CTYPE_ID, primePaymentResponse.getData().getNewCType());
                                     SamsPrefs.putString(getApplicationContext(), Constants.CUST_ID, primePaymentResponse.getData().getNewLoginId());
+                                    SamsPrefs.putString(getApplicationContext(), Constants.PRIME_COUNT, "" + primePaymentResponse.getData().getTotcount());
 
                                     SamsPrefs.putString(JoiPrimeMembershipActivity.this,Constants.ISPRIME,primePaymentResponse.getData().getPrime());
                                     SamsPrefs.putString(JoiPrimeMembershipActivity.this,Constants.ISPRIME_DATE,primePaymentResponse.getData().getPrimeEndDate());
